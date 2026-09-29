@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>QR Shield History</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+
+            margin: 0;
+
+            font-family: Arial, sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef5ff,
+                    #ffffff
+                );
+
+            color: #222;
+        }
+
+        .container {
+
+            width: 92%;
+
+            max-width: 900px;
+
+            margin: 30px auto;
+        }
+
+        .top {
+
+            text-align: center;
+
+            margin-bottom: 25px;
+        }
+
+        .logo {
+
+            font-size: 32px;
+
+            font-weight: bold;
+
+            color: #1769aa;
+        }
+
+        .subtitle {
+
+            color: #666;
+        }
+
+        .card {
+
+            background: white;
+
+            padding: 22px;
+
+            margin-bottom: 20px;
+
+            border-radius: 16px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0,0,0,0.08);
+        }
+
+        h2 {
+
+            margin-top: 0;
+
+            color: #1769aa;
+        }
+
+        .history-item {
+
+            border: 1px solid #ddd;
+
+            border-radius: 12px;
+
+            padding: 15px;
+
+            margin-bottom: 15px;
+
+            background: #fafcff;
+        }
+
+        .history-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 10px;
+
+            flex-wrap: wrap;
+
+            margin-bottom: 10px;
+        }
+
+        .type {
+
+            font-weight: bold;
+
+            color: #1769aa;
+        }
+
+        .date {
+
+            font-size: 13px;
+
+            color: #777;
+        }
+
+        .score {
+
+            font-size: 24px;
+
+            font-weight: bold;
+
+            margin: 8px 0;
+        }
+
+        .safe {
+
+            color: green;
+        }
+
+        .suspicious {
+
+            color: orange;
+        }
+
+        .dangerous {
+
+            color: red;
+        }
+
+        .status {
+
+            font-weight: bold;
+
+            margin-bottom: 10px;
+        }
+
+        .content {
+
+            background: #eef6ff;
+
+            padding: 10px;
+
+            border-radius: 8px;
+
+            word-break: break-word;
+
+            font-size: 14px;
+        }
+
+        .empty {
+
+            text-align: center;
+
+            padding: 30px;
+
+            color: #777;
+        }
+
+        .buttons {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+
+            margin-top: 20px;
+        }
+
+        button {
+
+            border: none;
+
+            padding: 12px 20px;
+
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            font-size: 15px;
+
+            background: #1769aa;
+
+            color: white;
+        }
+
+        button:hover {
+
+            opacity: 0.9;
+        }
+
+        .clear-button {
+
+            background: #d32f2f;
+        }
+
+        .back-button {
+
+            background: #555;
+        }
+
+        .stats {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    3,
+                    1fr
+                );
+
+            gap: 12px;
+
+            margin-top: 15px;
+        }
+
+        .stat-box {
+
+            background: #eef6ff;
+
+            padding: 15px;
+
+            border-radius: 12px;
+
+            text-align: center;
+        }
+
+        .stat-number {
+
+            font-size: 25px;
+
+            font-weight: bold;
+
+            color: #1769aa;
+        }
+
+        .stat-label {
+
+            font-size: 13px;
+
+            color: #666;
+
+            margin-top: 5px;
+        }
+
+        @media (max-width: 600px) {
+
+            .stats {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+            .logo {
+
+                font-size: 27px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- HEADER -->
+
+    <div class="top">
+
+        <div class="logo">
+            🛡️ QR Shield
+        </div>
+
+        <p
+            class="subtitle"
+            id="subtitle">
+
+            Your QR Scan History
+
+        </p>
+
+    </div>
+
+
+    <!-- STATISTICS -->
+
+    <div class="card">
+
+        <h2 id="statisticsTitle">
+            📊 Scan Statistics
+        </h2>
+
+
+        <div class="stats">
+
+
+            <div class="stat-box">
+
+                <div
+                    class="stat-number"
+                    id="totalScans">
+
+                    0
+
+                </div>
+
+                <div
+                    class="stat-label"
+                    id="totalLabel">
+
+                    Total Scans
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-box">
+
+                <div
+                    class="stat-number safe"
+                    id="safeScans">
+
+                    0
+
+                </div>
+
+                <div
+                    class="stat-label"
+                    id="safeLabel">
+
+                    Safe
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-box">
+
+                <div
+                    class="stat-number dangerous"
+                    id="dangerScans">
+
+                    0
+
+                </div>
+
+                <div
+                    class="stat-label"
+                    id="dangerLabel">
+
+                    Dangerous
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- HISTORY -->
+
+    <div class="card">
+
+        <h2 id="historyTitle">
+            📋 Scan History
+        </h2>
+
+
+        <div id="historyList">
+
+        </div>
+
+
+        <div class="buttons">
+
+            <button
+                class="clear-button"
+                onclick="clearHistory()"
+                id="clearButton">
+
+                🗑️ Clear History
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- BACK -->
+
+    <div class="buttons">
+
+        <button
+            class="back-button"
+            onclick="goBack()"
+            id="backButton">
+
+            ← Back to Dashboard
+
+        </button>
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+
+/* ==========================================
+   LANGUAGE
+========================================== */
+
+const language =
+    localStorage.getItem(
+        "qrLanguage"
+    ) || "en";
+
+
+const translations = {
+
+
+    en: {
+
+        subtitle:
+            "Your QR Scan History",
+
+        statistics:
+            "📊 Scan Statistics",
+
+        total:
+            "Total Scans",
+
+        safe:
+            "Safe",
+
+        dangerous:
+            "Dangerous",
+
+        history:
+            "📋 Scan History",
+
+        clear:
+            "🗑️ Clear History",
+
+        back:
+            "← Back to Dashboard",
+
+        noHistory:
+            "No QR scans found yet.",
+
+        score:
+            "Security Score",
+
+        content:
+            "QR Content:",
+
+        confirm:
+            "Are you sure you want to clear all scan history?",
+
+        cleared:
+            "Scan history cleared."
+
+    },
+
+
+    mr: {
+
+        subtitle:
+            "तुमचा QR Scan History",
+
+        statistics:
+            "📊 Scan Statistics",
+
+        total:
+            "एकूण Scans",
+
+        safe:
+            "सुरक्षित",
+
+        dangerous:
+            "धोकादायक",
+
+        history:
+            "📋 Scan History",
+
+        clear:
+            "🗑️ History Clear करा",
+
+        back:
+            "← Dashboard वर जा",
+
+        noHistory:
+            "अजून कोणतेही QR Scan केलेले नाहीत.",
+
+        score:
+            "Security Score",
+
+        content:
+            "QR Content:",
+
+        confirm:
+            "तुम्हाला पूर्ण Scan History Clear करायची आहे का?",
+
+        cleared:
+            "Scan History Clear झाली."
+
+    },
+
+
+    hi: {
+
+        subtitle:
+            "आपकी QR Scan History",
+
+        statistics:
+            "📊 Scan Statistics",
+
+        total:
+            "कुल Scans",
+
+        safe:
+            "सुरक्षित",
+
+        dangerous:
+            "खतरनाक",
+
+        history:
+            "📋 Scan History",
+
+        clear:
+            "🗑️ History Clear करें",
+
+        back:
+            "← Dashboard पर जाएं",
+
+        noHistory:
+            "अभी तक कोई QR Scan नहीं किया गया है।",
+
+        score:
+            "Security Score",
+
+        content:
+            "QR Content:",
+
+        confirm:
+            "क्या आप पूरी Scan History Clear करना चाहते हैं?",
+
+        cleared:
+            "Scan History Clear हो गई।"
+
+    }
+
+};
+
+
+const t =
+    translations[language]
+    || translations.en;
+
+
+/* ==========================================
+   APPLY LANGUAGE
+========================================== */
+
+document.getElementById(
+    "subtitle"
+).textContent =
+    t.subtitle;
+
+
+document.getElementById(
+    "statisticsTitle"
+).textContent =
+    t.statistics;
+
+
+document.getElementById(
+    "totalLabel"
+).textContent =
+    t.total;
+
+
+document.getElementById(
+    "safeLabel"
+).textContent =
+    t.safe;
+
+
+document.getElementById(
+    "dangerLabel"
+).textContent =
+    t.dangerous;
+
+
+document.getElementById(
+    "historyTitle"
+).textContent =
+    t.history;
+
+
+document.getElementById(
+    "clearButton"
+).textContent =
+    t.clear;
+
+
+document.getElementById(
+    "backButton"
+).textContent =
+    t.back;
+
+
+/* ==========================================
+   LOAD HISTORY
+========================================== */
+
+function loadHistory() {
+
+
+    let history =
+        JSON.parse(
+            localStorage.getItem(
+                "qrScanHistory"
+            )
+        ) || [];
+
+
+    const historyList =
+        document.getElementById(
+            "historyList"
+        );
+
+
+    /* STATISTICS */
+
+    document.getElementById(
+        "totalScans"
+    ).textContent =
+        history.length;
+
+
+    const safeCount =
+        history.filter(
+            scan =>
+                scan.status === "SAFE"
+        ).length;
+
+
+    const dangerCount =
+        history.filter(
+            scan =>
+                scan.status === "DANGEROUS"
+        ).length;
+
+
+    document.getElementById(
+        "safeScans"
+    ).textContent =
+        safeCount;
+
+
+    document.getElementById(
+        "dangerScans"
+    ).textContent =
+        dangerCount;
+
+
+    /* EMPTY */
+
+    if (
+        history.length === 0
+    ) {
+
+        historyList.innerHTML = `
+
+            <div class="empty">
+
+                📭
+
+                <br><br>
+
+                ${t.noHistory}
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    /* CLEAR OLD HTML */
+
+    historyList.innerHTML = "";
+
+
+    /* SHOW EACH SCAN */
+
+    history.forEach(
+        scan => {
+
+
+            let statusClass =
+                "";
+
+
+            let statusIcon =
+                "";
+
+
+            if (
+                scan.status === "SAFE"
+            ) {
+
+                statusClass =
+                    "safe";
+
+                statusIcon =
+                    "🟢";
+
+            }
+
+            else if (
+                scan.status === "SUSPICIOUS"
+            ) {
+
+                statusClass =
+                    "suspicious";
+
+                statusIcon =
+                    "🟠";
+
+            }
+
+            else {
+
+                statusClass =
+                    "dangerous";
+
+                statusIcon =
+                    "🔴";
+
+            }
+
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+
+            item.className =
+                "history-item";
+
+
+            item.innerHTML = `
+
+                <div class="history-header">
+
+                    <div class="type">
+
+                        ${escapeHTML(
+                            scan.type
+                        )}
+
+                    </div>
+
+
+                    <div class="date">
+
+                        🕒
+                        ${escapeHTML(
+                            scan.date
+                        )}
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="score ${statusClass}">
+
+                    ${escapeHTML(
+                        String(
+                            scan.score
+                        )
+                    )}%
+
+                </div>
+
+
+                <div
+                    class="status ${statusClass}">
+
+                    ${statusIcon}
+
+                    ${escapeHTML(
+                        scan.status
+                    )}
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        ${t.content}
+                    </strong>
+
+                </div>
+
+
+                <div class="content">
+
+                    ${escapeHTML(
+                        scan.content
+                    )}
+
+                </div>
+
+            `;
+
+
+            historyList.appendChild(
+                item
+            );
+
+        }
+    );
+
+}
+
+
+/* ==========================================
+   CLEAR HISTORY
+========================================== */
+
+function clearHistory() {
+
+
+    const confirmed =
+        confirm(
+            t.confirm
+        );
+
+
+    if (!confirmed) {
+
+        return;
+
+    }
+
+
+    localStorage.removeItem(
+        "qrScanHistory"
+    );
+
+
+    loadHistory();
+
+
+    alert(
+        t.cleared
+    );
+
+}
+
+
+/* ==========================================
+   ESCAPE HTML
+========================================== */
+
+function escapeHTML(text) {
+
+    return String(text)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* ==========================================
+   BACK
+========================================== */
+
+function goBack() {
+
+    window.location.href =
+        "dashboard.html";
+
+}
+
+
+/* ==========================================
+   START
+========================================== */
+
+loadHistory();
+
+
+</script>
+
+
+</body>
+
+</html>

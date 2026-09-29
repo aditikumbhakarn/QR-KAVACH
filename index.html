@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>QR Kavach | Think Before You Scan</title>
+
+    <link rel="stylesheet"
+        href="style.css">
+
+    <style>
+        /* QR KAVACH HOME PAGE */
+
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top right,
+                    rgba(22, 160, 133, 0.10),
+                    transparent 35%),
+                #f4f7fb;
+        }
+
+        .home-header {
+            width: 100%;
+            padding: 20px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid #e4e9f0;
+        }
+
+        .home-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #123c69;
+            font-size: 25px;
+            font-weight: 800;
+        }
+
+        .shield-logo {
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #123c69;
+            color: white;
+            border-radius: 12px;
+            font-size: 23px;
+        }
+
+        .home-language {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .home-language label {
+            color: #596679;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .home-main {
+            min-height: calc(100vh - 85px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 45px 20px;
+        }
+
+        .home-content {
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .main-shield {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #123c69;
+            color: white;
+            border-radius: 25px;
+            font-size: 48px;
+            box-shadow:
+                0 12px 30px rgba(18, 60, 105, 0.20);
+        }
+
+        .home-content h1 {
+            color: #123c69;
+            font-size: clamp(42px, 8vw, 72px);
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 8px;
+        }
+
+        .tagline {
+            color: #16a085;
+            font-size: clamp(18px, 3vw, 25px);
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .home-description {
+            max-width: 650px;
+            margin: 0 auto 30px;
+            color: #687386;
+            font-size: 17px;
+        }
+
+        .language-note {
+            display: inline-block;
+            background: white;
+            border: 1px solid #e1e7ef;
+            border-radius: 12px;
+            padding: 12px 18px;
+            margin-bottom: 25px;
+            color: #596679;
+            font-size: 14px;
+        }
+
+        .get-started {
+            display: inline-block;
+            padding: 14px 32px;
+            background: #123c69;
+            color: white;
+            text-decoration: none;
+            border-radius: 11px;
+            font-size: 16px;
+            font-weight: 700;
+            transition: 0.2s ease;
+            box-shadow:
+                0 8px 20px rgba(18, 60, 105, 0.18);
+        }
+
+        .get-started:hover {
+            background: #0d2f52;
+            transform: translateY(-2px);
+        }
+
+        .security-points {
+            margin-top: 38px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .security-point {
+            background: white;
+            border: 1px solid #e1e7ef;
+            border-radius: 14px;
+            padding: 18px 12px;
+        }
+
+        .security-point .point-icon {
+            font-size: 25px;
+            margin-bottom: 7px;
+        }
+
+        .security-point h3 {
+            color: #123c69;
+            font-size: 15px;
+            margin-bottom: 3px;
+        }
+
+        .security-point p {
+            color: #687386;
+            font-size: 13px;
+        }
+
+        .home-footer {
+            text-align: center;
+            padding: 15px;
+            color: #8792a2;
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+
+            .home-header {
+                padding: 15px 20px;
+            }
+
+            .home-logo {
+                font-size: 21px;
+            }
+
+            .shield-logo {
+                width: 37px;
+                height: 37px;
+                font-size: 20px;
+            }
+
+            .home-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .home-logo {
+                justify-content: center;
+            }
+
+            .home-language {
+                justify-content: center;
+            }
+
+            .home-main {
+                padding: 35px 18px;
+            }
+
+            .main-shield {
+                width: 75px;
+                height: 75px;
+                font-size: 40px;
+            }
+
+            .home-content h1 {
+                font-size: 43px;
+            }
+
+            .home-description {
+                font-size: 15px;
+            }
+
+            .security-points {
+                grid-template-columns: 1fr;
+            }
+
+            .get-started {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="home-header">
+
+        <div class="home-logo">
+
+            <div class="shield-logo">
+                🛡️
+            </div>
+
+            <span>
+                QR Kavach
+            </span>
+
+        </div>
+
+
+        <div class="home-language">
+
+            <label for="languageSelect"
+                id="languageLabel">
+                Language
+            </label>
+
+            <select id="languageSelect">
+
+                <option value="en">
+                    English
+                </option>
+
+                <option value="mr">
+                    मराठी
+                </option>
+
+                <option value="hi">
+                    हिंदी
+                </option>
+
+            </select>
+
+        </div>
+
+    </header>
+
+
+    <!-- MAIN -->
+
+    <main class="home-main">
+
+        <div class="home-content">
+
+
+            <div class="main-shield">
+                🛡️
+            </div>
+
+
+            <h1>
+                QR Kavach
+            </h1>
+
+
+            <div class="tagline"
+                id="tagline">
+
+                Think Before You Scan
+
+            </div>
+
+
+            <p class="home-description"
+                id="description">
+
+                Check QR codes, understand what they contain,
+                and make safer decisions before opening links
+                or making payments.
+
+            </p>
+
+
+            <div class="language-note"
+                id="languageNote">
+
+                🌐 Select your preferred language
+                to continue.
+
+            </div>
+
+
+            <br>
+
+
+            <a href="login.html"
+                class="get-started"
+                id="startButton">
+
+                Get Started
+
+            </a>
+
+
+            <!-- SECURITY POINTS -->
+
+            <div class="security-points">
+
+
+                <div class="security-point">
+
+                    <div class="point-icon">
+                        🔍
+                    </div>
+
+                    <h3 id="point1Title">
+                        Scan & Check
+                    </h3>
+
+                    <p id="point1Text">
+                        Understand QR content before opening it.
+                    </p>
+
+                </div>
+
+
+                <div class="security-point">
+
+                    <div class="point-icon">
+                        🛡️
+                    </div>
+
+                    <h3 id="point2Title">
+                        Safety Analysis
+                    </h3>
+
+                    <p id="point2Text">
+                        Get a basic security score for scanned QR codes.
+                    </p>
+
+                </div>
+
+
+                <div class="security-point">
+
+                    <div class="point-icon">
+                        📚
+                    </div>
+
+                    <h3 id="point3Title">
+                        Stay Aware
+                    </h3>
+
+                    <p id="point3Text">
+                        Learn how to stay safer online.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <footer class="home-footer">
+
+        © 2026 QR Kavach ·
+        <span id="footerTagline">
+            Think Before You Scan
+        </span>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        const languageSelect =
+            document.getElementById(
+                "languageSelect"
+            );
+
+
+        /* =========================
+           SAVED LANGUAGE
+        ========================= */
+
+        const savedLanguage =
+            localStorage.getItem(
+                "qrLanguage"
+            );
+
+
+        if (savedLanguage) {
+
+            languageSelect.value =
+                savedLanguage;
+
+        }
+
+
+        /* =========================
+           LANGUAGE DATA
+        ========================= */
+
+        const translations = {
+
+            en: {
+
+                language:
+                    "Language",
+
+                tagline:
+                    "Think Before You Scan",
+
+                description:
+                    "Check QR codes, understand what they contain, and make safer decisions before opening links or making payments.",
+
+                languageNote:
+                    "🌐 Select your preferred language to continue.",
+
+                start:
+                    "Get Started",
+
+                point1Title:
+                    "Scan & Check",
+
+                point1Text:
+                    "Understand QR content before opening it.",
+
+                point2Title:
+                    "Safety Analysis",
+
+                point2Text:
+                    "Get a basic security score for scanned QR codes.",
+
+                point3Title:
+                    "Stay Aware",
+
+                point3Text:
+                    "Learn how to stay safer online.",
+
+                footer:
+                    "Think Before You Scan"
+
+            },
+
+
+            mr: {
+
+                language:
+                    "भाषा",
+
+                tagline:
+                    "स्कॅन करण्यापूर्वी विचार करा",
+
+                description:
+                    "QR कोडमध्ये काय आहे ते समजून घ्या आणि लिंक उघडण्यापूर्वी किंवा पेमेंट करण्यापूर्वी सुरक्षित निर्णय घ्या.",
+
+                languageNote:
+                    "🌐 पुढे जाण्यासाठी तुमची भाषा निवडा.",
+
+                start:
+                    "सुरुवात करा",
+
+                point1Title:
+                    "स्कॅन आणि तपासा",
+
+                point1Text:
+                    "QR उघडण्यापूर्वी त्यातील माहिती समजून घ्या.",
+
+                point2Title:
+                    "सुरक्षा तपासणी",
+
+                point2Text:
+                    "स्कॅन केलेल्या QR साठी मूलभूत सुरक्षा स्कोअर मिळवा.",
+
+                point3Title:
+                    "जागरूक रहा",
+
+                point3Text:
+                    "ऑनलाइन सुरक्षित कसे राहायचे ते शिका.",
+
+                footer:
+                    "स्कॅन करण्यापूर्वी विचार करा"
+
+            },
+
+
+            hi: {
+
+                language:
+                    "भाषा",
+
+                tagline:
+                    "स्कैन करने से पहले सोचें",
+
+                description:
+                    "QR कोड में क्या है समझें और लिंक खोलने या भुगतान करने से पहले सुरक्षित निर्णय लें।",
+
+                languageNote:
+                    "🌐 आगे बढ़ने के लिए अपनी भाषा चुनें।",
+
+                start:
+                    "शुरू करें",
+
+                point1Title:
+                    "स्कैन और जाँचें",
+
+                point1Text:
+                    "QR खोलने से पहले उसकी जानकारी समझें।",
+
+                point2Title:
+                    "सुरक्षा जाँच",
+
+                point2Text:
+                    "स्कैन किए गए QR के लिए बेसिक सुरक्षा स्कोर प्राप्त करें।",
+
+                point3Title:
+                    "जागरूक रहें",
+
+                point3Text:
+                    "ऑनलाइन सुरक्षित रहने के तरीके सीखें।",
+
+                footer:
+                    "स्कैन करने से पहले सोचें"
+
+            }
+
+        };
+
+
+        /* =========================
+           APPLY LANGUAGE
+        ========================= */
+
+        function applyLanguage() {
+
+            const language =
+                languageSelect.value;
+
+            const t =
+                translations[language];
+
+
+            document.getElementById(
+                "languageLabel"
+            ).innerText =
+                t.language;
+
+
+            document.getElementById(
+                "tagline"
+            ).innerText =
+                t.tagline;
+
+
+            document.getElementById(
+                "description"
+            ).innerText =
+                t.description;
+
+
+            document.getElementById(
+                "languageNote"
+            ).innerText =
+                t.languageNote;
+
+
+            document.getElementById(
+                "startButton"
+            ).innerText =
+                t.start;
+
+
+            document.getElementById(
+                "point1Title"
+            ).innerText =
+                t.point1Title;
+
+
+            document.getElementById(
+                "point1Text"
+            ).innerText =
+                t.point1Text;
+
+
+            document.getElementById(
+                "point2Title"
+            ).innerText =
+                t.point2Title;
+
+
+            document.getElementById(
+                "point2Text"
+            ).innerText =
+                t.point2Text;
+
+
+            document.getElementById(
+                "point3Title"
+            ).innerText =
+                t.point3Title;
+
+
+            document.getElementById(
+                "point3Text"
+            ).innerText =
+                t.point3Text;
+
+
+            document.getElementById(
+                "footerTagline"
+            ).innerText =
+                t.footer;
+
+
+            /* SAVE LANGUAGE */
+
+            localStorage.setItem(
+                "qrLanguage",
+                language
+            );
+
+        }
+
+
+        /* =========================
+           LANGUAGE CHANGE
+        ========================= */
+
+        languageSelect.addEventListener(
+            "change",
+            function () {
+
+                applyLanguage();
+
+            }
+        );
+
+
+        /* =========================
+           START
+        ========================= */
+
+        applyLanguage();
+
+    </script>
+
+</body>
+
+</html>

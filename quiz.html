@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cyber Security Quiz - QR Shield</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e0f2fe, #f8fafc);
+            color: #1e293b;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 25px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            color: #075985;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #475569;
+        }
+
+        .question {
+            background: white;
+            padding: 20px;
+            margin: 18px 0;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .question h3 {
+            margin-top: 0;
+            color: #0369a1;
+            line-height: 1.5;
+        }
+
+        label {
+            display: block;
+            padding: 10px;
+            margin: 7px 0;
+            background: #f8fafc;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        label:hover {
+            background: #e0f2fe;
+        }
+
+        input[type="radio"] {
+            margin-right: 8px;
+        }
+
+        #submitButton {
+            display: block;
+            margin: 25px auto;
+            padding: 13px 30px;
+            border: none;
+            border-radius: 10px;
+            background: #0369a1;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #submitButton:hover {
+            background: #075985;
+        }
+
+        #result {
+            display: none;
+            text-align: center;
+            background: white;
+            padding: 25px;
+            margin-top: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        #score {
+            font-size: 28px;
+            font-weight: bold;
+            color: #0369a1;
+        }
+
+        #message {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .back-button {
+            display: block;
+            width: fit-content;
+            margin: 25px auto 5px;
+            padding: 12px 22px;
+            background: #0369a1;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .back-button:hover {
+            background: #075985;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1 id="title">📝 Cyber Security Quiz</h1>
+
+        <p id="subtitle">
+            Test your knowledge about online safety and cyber security.
+        </p>
+
+    </div>
+
+
+    <!-- Question 1 -->
+    <div class="question">
+
+        <h3 id="q1">
+            1. What should you do if you receive a suspicious QR code?
+        </h3>
+
+        <label>
+            <input type="radio" name="q1" value="wrong">
+            <span id="q1a">Scan it immediately</span>
+        </label>
+
+        <label>
+            <input type="radio" name="q1" value="correct">
+            <span id="q1b">Check the source and link before opening</span>
+        </label>
+
+        <label>
+            <input type="radio" name="q1" value="wrong">
+            <span id="q1c">Share it with friends</span>
+        </label>
+
+    </div>
+
+
+    <!-- Question 2 -->
+    <div class="question">
+
+        <h3 id="q2">
+            2. Should you share your OTP with someone?
+        </h3>
+
+        <label>
+            <input type="radio" name="q2" value="wrong">
+            <span id="q2a">Yes, if they ask politely</span>
+        </label>
+
+        <label>
+            <input type="radio" name="q2" value="correct">
+            <span id="q2b">No, never share an OTP</span>
+        </label>
+
+        <label>
+            <input type="radio" name="q2" value="wrong">
+            <span id="q2c">Only with unknown people</span>
+        </label>
+
+    </div>
+
+
+    <!-- Question 3 -->
+    <div class="question">
+
+        <h3 id="q3">
+            3. What is phishing?
+        </h3>
+
+        <label>
+            <input type="radio" name="q3" value="correct">
+            <span id="q3a">A fake message or website designed to steal information</span>
+        </label>
+
+        <label>
+            <input type="radio" name="q3" value="wrong">
+            <span id="q3b">A type of computer game</span>
+        </label>
+
+        <label>
+            <input type="radio" name="q3" value="wrong">
+            <span id="q3c">A phone update</span>
+        </label>
+
+    </div>
+
+
+    <!-- Question 4 -->
+    <div class="question">
+
+        <h3 id="q4">
+            4. What makes a password stronger?
+        </h3>
+
+        <label>
+            <input type="radio" name="q4" value="wrong">
+            <span id="q4a">Using only your name</span>
+        </label>
+
+        <label>
+            <input type="radio" name="q4" value="correct">
+            <span id="q4b">Using a long and unique password</span>
+        </label>
+
+        <label>
+            <input type="radio" name="q4" value="wrong">
+            <span id="q4c">Using 123456</span>
+        </label>
+
+    </div>
+
+
+    <!-- Question 5 -->
+    <div class="question">
+
+        <h3 id="q5">
+            5. What should you do before opening an unknown link?
+        </h3>
+
+        <label>
+            <input type="radio" name="q5" value="correct">
+            <span id="q5a">Check the link and its source</span>
+        </label>
+
+        <label>
+            <input type="radio" name="q5" value="wrong">
+            <span id="q5b">Click it immediately</span>
+        </label>
+
+        <label>
+            <input type="radio" name="q5" value="wrong">
+            <span id="q5c">Send it to everyone</span>
+        </label>
+
+    </div>
+
+
+    <!-- Question 6 -->
+    <div class="question">
+
+        <h3 id="q6">
+            6. What should you do if money is lost in an online scam?
+        </h3>
+
+        <label>
+            <input type="radio" name="q6" value="correct">
+            <span id="q6a">Contact the bank/payment service and report it</span>
+        </label>
+
+        <label>
+            <input type="radio" name="q6" value="wrong">
+            <span id="q6b">Ignore it</span>
+        </label>
+
+        <label>
+            <input type="radio" name="q6" value="wrong">
+            <span id="q6c">Share your OTP with the scammer</span>
+        </label>
+
+    </div>
+
+
+    <!-- Question 7 -->
+    <div class="question">
+
+        <h3 id="q7">
+            7. Why should you keep your apps updated?
+        </h3>
+
+        <label>
+            <input type="radio" name="q7" value="correct">
+            <span id="q7a">Updates can include security fixes</span>
+        </label>
+
+        <label>
+            <input type="radio" name="q7" value="wrong">
+            <span id="q7b">To make scams easier</span>
+        </label>
+
+        <label>
+            <input type="radio" name="q7" value="wrong">
+            <span id="q7c">There is no reason</span>
+        </label>
+
+    </div>
+
+
+    <!-- Question 8 -->
+    <div class="question">
+
+        <h3 id="q8">
+            8. What is two-factor authentication?
+        </h3>
+
+        <label>
+            <input type="radio" name="q8" value="correct">
+            <span id="q8a">An extra security step when logging in</span>
+        </label>
+
+        <label>
+            <input type="radio" name="q8" value="wrong">
+            <span id="q8b">A type of QR code</span>
+        </label>
+
+        <label>
+            <input type="radio" name="q8" value="wrong">
+            <span id="q8c">A social media account</span>
+        </label>
+
+    </div>
+
+
+    <!-- Question 9 -->
+    <div class="question">
+
+        <h3 id="q9">
+            9. Where should you report cyber crime in India?
+        </h3>
+
+        <label>
+            <input type="radio" name="q9" value="correct">
+            <span id="q9a">Official National Cyber Crime Reporting Portal</span>
+        </label>
+
+        <label>
+            <input type="radio" name="q9" value="wrong">
+            <span id="q9b">A random social media account</span>
+        </label>
+
+        <label>
+            <input type="radio" name="q9" value="wrong">
+            <span id="q9c">An unknown website</span>
+        </label>
+
+    </div>
+
+
+    <!-- Question 10 -->
+    <div class="question">
+
+        <h3 id="q10">
+            10. What should you do with a suspicious QR code?
+        </h3>
+
+        <label>
+            <input type="radio" name="q10" value="wrong">
+            <span id="q10a">Open it without checking</span>
+        </label>
+
+        <label>
+            <input type="radio" name="q10" value="correct">
+            <span id="q10b">Check it carefully before opening the link</span>
+        </label>
+
+        <label>
+            <input type="radio" name="q10" value="wrong">
+            <span id="q10c">Share your personal details</span>
+        </label>
+
+    </div>
+
+
+    <button id="submitButton" onclick="calculateScore()">
+        Submit Quiz
+    </button>
+
+
+    <div id="result">
+
+        <h2 id="resultTitle">
+            🎉 Quiz Result
+        </h2>
+
+        <div id="score"></div>
+
+        <p id="message"></p>
+
+    </div>
+
+
+    <a href="dashboard.html" class="back-button" id="backButton">
+        ← Back to Dashboard
+    </a>
+
+</div>
+
+
+<script>
+
+    // Get language selected on the starting page
+    const language = localStorage.getItem("qrLanguage") || "en";
+
+
+    const translations = {
+
+        en: {
+
+            title: "📝 Cyber Security Quiz",
+
+            subtitle:
+                "Test your knowledge about online safety and cyber security.",
+
+            q1:
+                "1. What should you do if you receive a suspicious QR code?",
+
+            q1a:
+                "Scan it immediately",
+
+            q1b:
+                "Check the source and link before opening",
+
+            q1c:
+                "Share it with friends",
+
+
+            q2:
+                "2. Should you share your OTP with someone?",
+
+            q2a:
+                "Yes, if they ask politely",
+
+            q2b:
+                "No, never share an OTP",
+
+            q2c:
+                "Only with unknown people",
+
+
+            q3:
+                "3. What is phishing?",
+
+            q3a:
+                "A fake message or website designed to steal information",
+
+            q3b:
+                "A type of computer game",
+
+            q3c:
+                "A phone update",
+
+
+            q4:
+                "4. What makes a password stronger?",
+
+            q4a:
+                "Using only your name",
+
+            q4b:
+                "Using a long and unique password",
+
+            q4c:
+                "Using 123456",
+
+
+            q5:
+                "5. What should you do before opening an unknown link?",
+
+            q5a:
+                "Check the link and its source",
+
+            q5b:
+                "Click it immediately",
+
+            q5c:
+                "Send it to everyone",
+
+
+            q6:
+                "6. What should you do if money is lost in an online scam?",
+
+            q6a:
+                "Contact the bank/payment service and report it",
+
+            q6b:
+                "Ignore it",
+
+            q6c:
+                "Share your OTP with the scammer",
+
+
+            q7:
+                "7. Why should you keep your apps updated?",
+
+            q7a:
+                "Updates can include security fixes",
+
+            q7b:
+                "To make scams easier",
+
+            q7c:
+                "There is no reason",
+
+
+            q8:
+                "8. What is two-factor authentication?",
+
+            q8a:
+                "An extra security step when logging in",
+
+            q8b:
+                "A type of QR code",
+
+            q8c:
+                "A social media account",
+
+
+            q9:
+                "9. Where should you report cyber crime in India?",
+
+            q9a:
+                "Official National Cyber Crime Reporting Portal",
+
+            q9b:
+                "A random social media account",
+
+            q9c:
+                "An unknown website",
+
+
+            q10:
+                "10. What should you do with a suspicious QR code?",
+
+            q10a:
+                "Open it without checking",
+
+            q10b:
+                "Check it carefully before opening the link",
+
+            q10c:
+                "Share your personal details",
+
+
+            submitButton:
+                "Submit Quiz",
+
+            resultTitle:
+                "🎉 Quiz Result",
+
+            scoreText:
+                "Your Score: ",
+
+            messageExcellent:
+                "Excellent! You have good cyber safety awareness.",
+
+            messageGood:
+                "Good job! Keep learning about cyber safety.",
+
+            messageImprove:
+                "Keep learning and follow basic cyber safety rules.",
+
+            backButton:
+                "← Back to Dashboard"
+        },
+
+
+        mr: {
+
+            title:
+                "📝 सायबर सुरक्षा क्विझ",
+
+            subtitle:
+                "ऑनलाइन सुरक्षितता आणि सायबर सुरक्षेबद्दल तुमचे ज्ञान तपासा.",
+
+            q1:
+                "1. तुम्हाला संशयास्पद QR कोड मिळाल्यास काय करावे?",
+
+            q1a:
+                "तो लगेच स्कॅन करावा",
+
+            q1b:
+                "तो उघडण्यापूर्वी त्याचा स्रोत आणि लिंक तपासावी",
+
+            q1c:
+                "तो मित्रांसोबत शेअर करावा",
+
+
+            q2:
+                "2. तुमचा OTP कोणासोबत शेअर करावा का?",
+
+            q2a:
+                "हो, जर त्यांनी विनंती केली तर",
+
+            q2b:
+                "नाही, OTP कधीही शेअर करू नये",
+
+            q2c:
+                "फक्त अनोळखी व्यक्तीसोबत",
+
+
+            q3:
+                "3. Phishing म्हणजे काय?",
+
+            q3a:
+                "माहिती चोरण्यासाठी तयार केलेला खोटा मेसेज किंवा वेबसाइट",
+
+            q3b:
+                "एक प्रकारचा Computer Game",
+
+            q3c:
+                "फोन अपडेट",
+
+
+            q4:
+                "4. पासवर्ड अधिक मजबूत कशामुळे होतो?",
+
+            q4a:
+                "फक्त तुमचे नाव वापरल्याने",
+
+            q4b:
+                "लांब आणि वेगळा पासवर्ड वापरल्याने",
+
+            q4c:
+                "123456 वापरल्याने",
+
+
+            q5:
+                "5. अनोळखी लिंक उघडण्यापूर्वी काय करावे?",
+
+            q5a:
+                "लिंक आणि तिचा स्रोत तपासावा",
+
+            q5b:
+                "लगेच क्लिक करावे",
+
+            q5c:
+                "सर्वांना पाठवावी",
+
+
+            q6:
+                "6. ऑनलाइन फसवणुकीत पैसे गेल्यास काय करावे?",
+
+            q6a:
+                "बँक/पेमेंट सेवेशी संपर्क करून तक्रार करावी",
+
+            q6b:
+                "दुर्लक्ष करावे",
+
+            q6c:
+                "फसवणूक करणाऱ्याला OTP द्यावा",
+
+
+            q7:
+                "7. Apps अपडेट का ठेवावेत?",
+
+            q7a:
+                "Updates मध्ये सुरक्षा सुधारणा असू शकतात",
+
+            q7b:
+                "फसवणूक सोपी करण्यासाठी",
+
+            q7c:
+                "काहीही कारण नाही",
+
+
+            q8:
+                "8. Two-Factor Authentication म्हणजे काय?",
+
+            q8a:
+                "Login करताना अतिरिक्त सुरक्षा प्रक्रिया",
+
+            q8b:
+                "एक प्रकारचा QR कोड",
+
+            q8c:
+                "Social Media Account",
+
+
+            q9:
+                "9. भारतात सायबर क्राईम कुठे रिपोर्ट करावा?",
+
+            q9a:
+                "अधिकृत National Cyber Crime Reporting Portal",
+
+            q9b:
+                "Random Social Media Account",
+
+            q9c:
+                "अनोळखी वेबसाइट",
+
+
+            q10:
+                "10. संशयास्पद QR कोडबाबत काय करावे?",
+
+            q10a:
+                "तपासणी न करता उघडावा",
+
+            q10b:
+                "लिंक उघडण्यापूर्वी काळजीपूर्वक तपासावा",
+
+            q10c:
+                "वैयक्तिक माहिती शेअर करावी",
+
+
+            submitButton:
+                "क्विझ सबमिट करा",
+
+            resultTitle:
+                "🎉 क्विझचा निकाल",
+
+            scoreText:
+                "तुमचा स्कोअर: ",
+
+            messageExcellent:
+                "उत्कृष्ट! तुमची सायबर सुरक्षिततेबद्दल चांगली जागरूकता आहे.",
+
+            messageGood:
+                "छान! सायबर सुरक्षिततेबद्दल असेच शिकत रहा.",
+
+            messageImprove:
+                "अजून शिका आणि सायबर सुरक्षिततेचे मूलभूत नियम पाळा.",
+
+            backButton:
+                "← Dashboard वर जा"
+        },
+
+
+        hi: {
+
+            title:
+                "📝 साइबर सुरक्षा क्विज़",
+
+            subtitle:
+                "ऑनलाइन सुरक्षा और साइबर सुरक्षा के बारे में अपने ज्ञान की जांच करें।",
+
+            q1:
+                "1. अगर आपको संदिग्ध QR कोड मिले तो क्या करना चाहिए?",
+
+            q1a:
+                "उसे तुरंत स्कैन करना चाहिए",
+
+            q1b:
+                "खोलने से पहले स्रोत और लिंक जांचना चाहिए",
+
+            q1c:
+                "उसे दोस्तों के साथ शेयर करना चाहिए",
+
+
+            q2:
+                "2. क्या आपको अपना OTP किसी के साथ शेयर करना चाहिए?",
+
+            q2a:
+                "हाँ, अगर वे विनम्रता से पूछें",
+
+            q2b:
+                "नहीं, OTP कभी शेयर नहीं करना चाहिए",
+
+            q2c:
+                "केवल अनजान लोगों के साथ",
+
+
+            q3:
+                "3. Phishing क्या है?",
+
+            q3a:
+                "जानकारी चुराने के लिए बनाया गया नकली संदेश या वेबसाइट",
+
+            q3b:
+                "एक प्रकार का Computer Game",
+
+            q3c:
+                "फोन अपडेट",
+
+
+            q4:
+                "4. पासवर्ड को मजबूत क्या बनाता है?",
+
+            q4a:
+                "केवल अपना नाम इस्तेमाल करना",
+
+            q4b:
+                "लंबा और अलग पासवर्ड इस्तेमाल करना",
+
+            q4c:
+                "123456 इस्तेमाल करना",
+
+
+            q5:
+                "5. अनजान लिंक खोलने से पहले क्या करना चाहिए?",
+
+            q5a:
+                "लिंक और उसके स्रोत की जांच करनी चाहिए",
+
+            q5b:
+                "तुरंत क्लिक करना चाहिए",
+
+            q5c:
+                "सभी को भेजना चाहिए",
+
+
+            q6:
+                "6. ऑनलाइन धोखाधड़ी में पैसे चले जाएं तो क्या करना चाहिए?",
+
+            q6a:
+                "बैंक/पेमेंट सेवा से संपर्क करके रिपोर्ट करना चाहिए",
+
+            q6b:
+                "इसे नजरअंदाज करना चाहिए",
+
+            q6c:
+                "धोखाधड़ी करने वाले को OTP देना चाहिए",
+
+
+            q7:
+                "7. Apps को अपडेट क्यों रखना चाहिए?",
+
+            q7a:
+                "Updates में सुरक्षा सुधार हो सकते हैं",
+
+            q7b:
+                "धोखाधड़ी आसान बनाने के लिए",
+
+            q7c:
+                "कोई कारण नहीं",
+
+
+            q8:
+                "8. Two-Factor Authentication क्या है?",
+
+            q8a:
+                "Login करते समय अतिरिक्त सुरक्षा प्रक्रिया",
+
+            q8b:
+                "एक प्रकार का QR कोड",
+
+            q8c:
+                "Social Media Account",
+
+
+            q9:
+                "9. भारत में साइबर क्राइम कहां रिपोर्ट करना चाहिए?",
+
+            q9a:
+                "आधिकारिक National Cyber Crime Reporting Portal",
+
+            q9b:
+                "Random Social Media Account",
+
+            q9c:
+                "अनजान वेबसाइट",
+
+
+            q10:
+                "10. संदिग्ध QR कोड के साथ क्या करना चाहिए?",
+
+            q10a:
+                "बिना जांचे खोलना चाहिए",
+
+            q10b:
+                "लिंक खोलने से पहले ध्यान से जांचना चाहिए",
+
+            q10c:
+                "व्यक्तिगत जानकारी शेयर करनी चाहिए",
+
+
+            submitButton:
+                "क्विज़ सबमिट करें",
+
+            resultTitle:
+                "🎉 क्विज़ का परिणाम",
+
+            scoreText:
+                "आपका स्कोर: ",
+
+            messageExcellent:
+                "बहुत बढ़िया! आपको साइबर सुरक्षा की अच्छी जानकारी है।",
+
+            messageGood:
+                "अच्छा काम! साइबर सुरक्षा के बारे में सीखते रहें।",
+
+            messageImprove:
+                "सीखते रहें और साइबर सुरक्षा के मूल नियमों का पालन करें।",
+
+            backButton:
+                "← Dashboard पर जाएं"
+        }
+
+    };
+
+
+    const t = translations[language];
+
+
+    // Apply language
+
+    document.getElementById("title").textContent = t.title;
+    document.getElementById("subtitle").textContent = t.subtitle;
+
+    for (let i = 1; i <= 10; i++) {
+
+        document.getElementById("q" + i).textContent = t["q" + i];
+
+        document.getElementById("q" + i + "a").textContent =
+            t["q" + i + "a"];
+
+        document.getElementById("q" + i + "b").textContent =
+            t["q" + i + "b"];
+
+        document.getElementById("q" + i + "c").textContent =
+            t["q" + i + "c"];
+    }
+
+
+    document.getElementById("submitButton").textContent =
+        t.submitButton;
+
+    document.getElementById("resultTitle").textContent =
+        t.resultTitle;
+
+    document.getElementById("backButton").textContent =
+        t.backButton;
+
+
+    function calculateScore() {
+
+        let score = 0;
+
+        for (let i = 1; i <= 10; i++) {
+
+            const selected =
+                document.querySelector(
+                    'input[name="q' + i + '"]:checked'
+                );
+
+            if (selected && selected.value === "correct") {
+                score++;
+            }
+        }
+
+
+        document.getElementById("result").style.display = "block";
+
+
+        document.getElementById("score").textContent =
+            t.scoreText + score + " / 10";
+
+
+        let message = "";
+
+
+        if (score >= 8) {
+
+            message = t.messageExcellent;
+
+        } else if (score >= 5) {
+
+            message = t.messageGood;
+
+        } else {
+
+            message = t.messageImprove;
+
+        }
+
+
+        document.getElementById("message").textContent =
+            message;
+
+
+        document.getElementById("result").scrollIntoView({
+            behavior: "smooth"
+        });
+
+    }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>QR Kavach Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header>
+    <div class="container top-bar">
+
+        <div class="home-logo">
+            <div class="shield-logo">🛡️</div>
+
+            <div>
+                <div class="logo">QR Kavach</div>
+                <div class="tagline">
+                    Think Before You Scan
+                </div>
+            </div>
+        </div>
+
+        <div class="top-actions">
+
+            <span
+                class="language-badge"
+                id="languageBadge">
+                English
+            </span>
+
+            <button
+                class="logout-button"
+                onclick="logout()"
+                id="logoutButton">
+                Logout
+            </button>
+
+        </div>
+
+    </div>
+</header>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="dashboard-container">
+
+
+    <!-- ================= WELCOME ================= -->
+
+    <section class="welcome-box">
+
+        <div class="welcome-content">
+
+            <p class="small-title" id="dashboardTitle">
+                QR KAVACH DASHBOARD
+            </p>
+
+            <h1 id="welcomeTitle">
+                Welcome to QR Kavach 👋
+            </h1>
+
+            <p id="welcomeText">
+                Your QR safety tools are ready. Scan, check and stay safe.
+            </p>
+
+        </div>
+
+        <div class="welcome-icon">
+            🛡️
+        </div>
+
+    </section>
+
+
+    <!-- ================= SCAN OVERVIEW ================= -->
+
+    <section class="dashboard-section">
+
+        <div class="section-heading">
+
+            <h2 id="overviewTitle">
+                Your Scan Overview
+            </h2>
+
+            <p id="overviewText">
+                A quick look at your QR scanning activity.
+            </p>
+
+        </div>
+
+
+        <div class="statistics">
+
+
+            <!-- Total -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📊
+                </div>
+
+                <div class="stat-info">
+
+                    <strong id="totalScans">
+                        0
+                    </strong>
+
+                    <span id="totalText">
+                        Total Scans
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Safe -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon safe-icon">
+                    🟢
+                </div>
+
+                <div class="stat-info">
+
+                    <strong id="safeScans">
+                        0
+                    </strong>
+
+                    <span id="safeText">
+                        Safe
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Suspicious -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon suspicious-icon">
+                    🟠
+                </div>
+
+                <div class="stat-info">
+
+                    <strong id="suspiciousScans">
+                        0
+                    </strong>
+
+                    <span id="suspiciousText">
+                        Suspicious
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Dangerous -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon dangerous-icon">
+                    🔴
+                </div>
+
+                <div class="stat-info">
+
+                    <strong id="dangerousScans">
+                        0
+                    </strong>
+
+                    <span id="dangerousText">
+                        Dangerous
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= TOOLS ================= -->
+
+    <section class="dashboard-section">
+
+        <div class="section-heading">
+
+            <h2 id="toolsTitle">
+                QR Kavach Tools
+            </h2>
+
+            <p id="toolsText">
+                Choose what you want to do.
+            </p>
+
+        </div>
+
+
+        <div class="cards">
+
+
+            <!-- 1. Scanner -->
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    📷
+                </div>
+
+                <h3 id="scannerCardTitle">
+                    Scan & Check QR
+                </h3>
+
+                <p id="scannerCardText">
+                    Scan a QR code using your camera or upload a QR image.
+                </p>
+
+                <a
+                    href="scanner.html"
+                    class="card-button"
+                    id="scannerButton">
+                    Open Scanner
+                </a>
+
+            </div>
+
+
+            <!-- 2. Awareness -->
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    📚
+                </div>
+
+                <h3 id="awarenessCardTitle">
+                    Cyber Awareness
+                </h3>
+
+                <p id="awarenessCardText">
+                    Learn about QR scams, phishing, OTP fraud and online safety.
+                </p>
+
+                <a
+                    href="awareness.html"
+                    class="card-button"
+                    id="awarenessButton">
+                    Learn Safety
+                </a>
+
+            </div>
+
+
+            <!-- 3. Cyber Help -->
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    🚨
+                </div>
+
+                <h3 id="helpCardTitle">
+                    Cyber Crime Help
+                </h3>
+
+                <p id="helpCardText">
+                    Learn what to do if you face an online scam or cyber crime.
+                </p>
+
+                <a
+                    href="cyber-help.html"
+                    class="card-button"
+                    id="helpButton">
+                    Get Help
+                </a>
+
+            </div>
+
+
+            <!-- 4. Quiz -->
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    📝
+                </div>
+
+                <h3 id="quizCardTitle">
+                    Cyber Security Quiz
+                </h3>
+
+                <p id="quizCardText">
+                    Test your knowledge with a 10-question cyber safety quiz.
+                </p>
+
+                <a
+                    href="quiz.html"
+                    class="card-button"
+                    id="quizButton">
+                    Take Quiz
+                </a>
+
+            </div>
+
+
+            <!-- 5. History -->
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    📋
+                </div>
+
+                <h3 id="historyCardTitle">
+                    Scan History
+                </h3>
+
+                <p id="historyCardText">
+                    View your previous QR scans and their safety results.
+                </p>
+
+                <a
+                    href="history.html"
+                    class="card-button"
+                    id="historyButton">
+                    View History
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <p>
+        🛡️ QR Kavach
+    </p>
+
+    <span id="footerText">
+        Think Before You Scan
+    </span>
+
+</footer>
+
+
+
+<script>
+
+/* =====================================================
+   LOGIN PROTECTION
+   ===================================================== */
+
+const isLoggedIn =
+    localStorage.getItem("qrLoggedIn");
+
+if (isLoggedIn !== "true") {
+
+    window.location.href = "login.html";
+
+}
+
+
+/* =====================================================
+   USER NAME
+   ===================================================== */
+
+const userName =
+    localStorage.getItem("qrName") || "";
+
+
+/* =====================================================
+   LANGUAGE
+   ===================================================== */
+
+const language =
+    localStorage.getItem("qrLanguage") || "en";
+
+
+/* =====================================================
+   TRANSLATIONS
+   ===================================================== */
+
+const translations = {
+
+    en: {
+
+        language: "English",
+
+        dashboard: "QR KAVACH DASHBOARD",
+
+        welcome: userName
+            ? "Welcome, " + userName + " 👋"
+            : "Welcome to QR Kavach 👋",
+
+        welcomeText:
+            "Your QR safety tools are ready. Scan, check and stay safe.",
+
+        overview:
+            "Your Scan Overview",
+
+        overviewText:
+            "A quick look at your QR scanning activity.",
+
+        total:
+            "Total Scans",
+
+        safe:
+            "Safe",
+
+        suspicious:
+            "Suspicious",
+
+        dangerous:
+            "Dangerous",
+
+        tools:
+            "QR Kavach Tools",
+
+        toolsText:
+            "Choose what you want to do.",
+
+        scanner:
+            "Scan & Check QR",
+
+        scannerText:
+            "Scan a QR code using your camera or upload a QR image.",
+
+        scannerButton:
+            "Open Scanner",
+
+        awareness:
+            "Cyber Awareness",
+
+        awarenessText:
+            "Learn about QR scams, phishing, OTP fraud and online safety.",
+
+        awarenessButton:
+            "Learn Safety",
+
+        help:
+            "Cyber Crime Help",
+
+        helpText:
+            "Learn what to do if you face an online scam or cyber crime.",
+
+        helpButton:
+            "Get Help",
+
+        quiz:
+            "Cyber Security Quiz",
+
+        quizText:
+            "Test your knowledge with a 10-question cyber safety quiz.",
+
+        quizButton:
+            "Take Quiz",
+
+        history:
+            "Scan History",
+
+        historyText:
+            "View your previous QR scans and their safety results.",
+
+        historyButton:
+            "View History",
+
+        logout:
+            "Logout",
+
+        footer:
+            "Think Before You Scan"
+
+    },
+
+
+    mr: {
+
+        language: "मराठी",
+
+        dashboard:
+            "QR KAVACH डॅशबोर्ड",
+
+        welcome: userName
+            ? "स्वागत आहे, " + userName + " 👋"
+            : "QR Kavach मध्ये स्वागत आहे 👋",
+
+        welcomeText:
+            "तुमची QR सुरक्षा साधने तयार आहेत. स्कॅन करा, तपासा आणि सुरक्षित रहा.",
+
+        overview:
+            "तुमच्या स्कॅनचा आढावा",
+
+        overviewText:
+            "तुमच्या QR स्कॅनिंगची थोडक्यात माहिती.",
+
+        total:
+            "एकूण स्कॅन",
+
+        safe:
+            "सुरक्षित",
+
+        suspicious:
+            "संशयास्पद",
+
+        dangerous:
+            "धोकादायक",
+
+        tools:
+            "QR Kavach साधने",
+
+        toolsText:
+            "तुम्हाला काय करायचे आहे ते निवडा.",
+
+        scanner:
+            "QR स्कॅन व तपासा",
+
+        scannerText:
+            "कॅमेराने QR स्कॅन करा किंवा QR फोटो अपलोड करा.",
+
+        scannerButton:
+            "स्कॅनर उघडा",
+
+        awareness:
+            "सायबर जागरूकता",
+
+        awarenessText:
+            "QR स्कॅम, फिशिंग, OTP फसवणूक आणि ऑनलाइन सुरक्षिततेबद्दल शिका.",
+
+        awarenessButton:
+            "सुरक्षा शिका",
+
+        help:
+            "सायबर क्राईम मदत",
+
+        helpText:
+            "ऑनलाइन स्कॅम किंवा सायबर क्राईम झाल्यास काय करावे ते शिका.",
+
+        helpButton:
+            "मदत घ्या",
+
+        quiz:
+            "सायबर सुरक्षा क्विझ",
+
+        quizText:
+            "10 प्रश्नांच्या क्विझद्वारे तुमचे सायबर सुरक्षा ज्ञान तपासा.",
+
+        quizButton:
+            "क्विझ सुरू करा",
+
+        history:
+            "स्कॅन इतिहास",
+
+        historyText:
+            "तुमचे मागील QR स्कॅन आणि त्यांचे सुरक्षा निकाल पहा.",
+
+        historyButton:
+            "इतिहास पहा",
+
+        logout:
+            "लॉगआउट",
+
+        footer:
+            "स्कॅन करण्यापूर्वी विचार करा"
+
+    },
+
+
+    hi: {
+
+        language: "हिंदी",
+
+        dashboard:
+            "QR KAVACH डैशबोर्ड",
+
+        welcome: userName
+            ? "स्वागत है, " + userName + " 👋"
+            : "QR Kavach में आपका स्वागत है 👋",
+
+        welcomeText:
+            "आपके QR सुरक्षा उपकरण तैयार हैं। स्कैन करें, जांचें और सुरक्षित रहें।",
+
+        overview:
+            "आपके स्कैन का विवरण",
+
+        overviewText:
+            "आपकी QR स्कैनिंग गतिविधि की जानकारी।",
+
+        total:
+            "कुल स्कैन",
+
+        safe:
+            "सुरक्षित",
+
+        suspicious:
+            "संदिग्ध",
+
+        dangerous:
+            "खतरनाक",
+
+        tools:
+            "QR Kavach टूल्स",
+
+        toolsText:
+            "आप क्या करना चाहते हैं चुनें।",
+
+        scanner:
+            "QR स्कैन और जांचें",
+
+        scannerText:
+            "कैमरे से QR स्कैन करें या QR फोटो अपलोड करें।",
+
+        scannerButton:
+            "स्कैनर खोलें",
+
+        awareness:
+            "साइबर जागरूकता",
+
+        awarenessText:
+            "QR स्कैम, फिशिंग, OTP धोखाधड़ी और ऑनलाइन सुरक्षा के बारे में जानें।",
+
+        awarenessButton:
+            "सुरक्षा सीखें",
+
+        help:
+            "साइबर क्राइम सहायता",
+
+        helpText:
+            "ऑनलाइन स्कैम या साइबर क्राइम होने पर क्या करें जानें।",
+
+        helpButton:
+            "मदद लें",
+
+        quiz:
+            "साइबर सुरक्षा क्विज़",
+
+        quizText:
+            "10 प्रश्नों की क्विज़ से अपनी साइबर सुरक्षा जानकारी जांचें।",
+
+        quizButton:
+            "क्विज़ शुरू करें",
+
+        history:
+            "स्कैन इतिहास",
+
+        historyText:
+            "अपने पिछले QR स्कैन और सुरक्षा परिणाम देखें।",
+
+        historyButton:
+            "इतिहास देखें",
+
+        logout:
+            "लॉगआउट",
+
+        footer:
+            "स्कैन करने से पहले सोचें"
+
+    }
+
+};
+
+
+const t =
+    translations[language] || translations.en;
+
+
+/* =====================================================
+   APPLY LANGUAGE
+   ===================================================== */
+
+document.getElementById("languageBadge").textContent =
+    t.language;
+
+document.getElementById("dashboardTitle").textContent =
+    t.dashboard;
+
+document.getElementById("welcomeTitle").textContent =
+    t.welcome;
+
+document.getElementById("welcomeText").textContent =
+    t.welcomeText;
+
+document.getElementById("overviewTitle").textContent =
+    t.overview;
+
+document.getElementById("overviewText").textContent =
+    t.overviewText;
+
+document.getElementById("totalText").textContent =
+    t.total;
+
+document.getElementById("safeText").textContent =
+    t.safe;
+
+document.getElementById("suspiciousText").textContent =
+    t.suspicious;
+
+document.getElementById("dangerousText").textContent =
+    t.dangerous;
+
+document.getElementById("toolsTitle").textContent =
+    t.tools;
+
+document.getElementById("toolsText").textContent =
+    t.toolsText;
+
+
+/* Scanner */
+
+document.getElementById("scannerCardTitle").textContent =
+    t.scanner;
+
+document.getElementById("scannerCardText").textContent =
+    t.scannerText;
+
+document.getElementById("scannerButton").textContent =
+    t.scannerButton;
+
+
+/* Awareness */
+
+document.getElementById("awarenessCardTitle").textContent =
+    t.awareness;
+
+document.getElementById("awarenessCardText").textContent =
+    t.awarenessText;
+
+document.getElementById("awarenessButton").textContent =
+    t.awarenessButton;
+
+
+/* Help */
+
+document.getElementById("helpCardTitle").textContent =
+    t.help;
+
+document.getElementById("helpCardText").textContent =
+    t.helpText;
+
+document.getElementById("helpButton").textContent =
+    t.helpButton;
+
+
+/* Quiz */
+
+document.getElementById("quizCardTitle").textContent =
+    t.quiz;
+
+document.getElementById("quizCardText").textContent =
+    t.quizText;
+
+document.getElementById("quizButton").textContent =
+    t.quizButton;
+
+
+/* History */
+
+document.getElementById("historyCardTitle").textContent =
+    t.history;
+
+document.getElementById("historyCardText").textContent =
+    t.historyText;
+
+document.getElementById("historyButton").textContent =
+    t.historyButton;
+
+
+/* Logout */
+
+document.getElementById("logoutButton").textContent =
+    t.logout;
+
+
+/* Footer */
+
+document.getElementById("footerText").textContent =
+    t.footer;
+
+
+/* =====================================================
+   SCAN STATISTICS
+   ===================================================== */
+
+const history =
+    JSON.parse(
+        localStorage.getItem("qrScanHistory")
+    ) || [];
+
+
+let total = history.length;
+let safe = 0;
+let suspicious = 0;
+let dangerous = 0;
+
+
+history.forEach(scan => {
+
+    if (scan.status === "SAFE") {
+
+        safe++;
+
+    } else if (scan.status === "SUSPICIOUS") {
+
+        suspicious++;
+
+    } else if (scan.status === "DANGEROUS") {
+
+        dangerous++;
+
+    }
+
+});
+
+
+document.getElementById("totalScans").textContent =
+    total;
+
+document.getElementById("safeScans").textContent =
+    safe;
+
+document.getElementById("suspiciousScans").textContent =
+    suspicious;
+
+document.getElementById("dangerousScans").textContent =
+    dangerous;
+
+
+/* =====================================================
+   LOGOUT
+   ===================================================== */
+
+function logout() {
+
+    localStorage.removeItem("qrLoggedIn");
+
+    window.location.href =
+        "index.html";
+
+}
+
+</script>
+
+</body>
+</html>

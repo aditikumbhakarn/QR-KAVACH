@@ -1,0 +1,2139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>QR Kavach Scanner</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #eef5ff, #ffffff);
+            color: #222;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 850px;
+            margin: 30px auto;
+        }
+
+        .top {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            color: #1769aa;
+        }
+
+        .subtitle {
+            color: #666;
+        }
+
+        .card {
+            background: white;
+            padding: 22px;
+            margin-bottom: 20px;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #1769aa;
+        }
+
+        #reader {
+            width: 100%;
+            max-width: 500px;
+            margin: auto;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        video {
+            width: 100%;
+            border-radius: 12px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        button {
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 15px;
+            background: #1769aa;
+            color: white;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .danger-button {
+            background: #d32f2f;
+        }
+
+        #qrImageInput {
+            display: none;
+        }
+
+        .result {
+            display: none;
+        }
+
+        .type-box {
+            background: #eef6ff;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+
+        .score {
+            font-size: 34px;
+            font-weight: bold;
+            text-align: center;
+            margin: 15px;
+        }
+
+        .safe {
+            color: green;
+        }
+
+        .suspicious {
+            color: orange;
+        }
+
+        .dangerous {
+            color: red;
+        }
+
+        .info-row {
+            padding: 9px 0;
+            border-bottom: 1px solid #eee;
+            word-break: break-word;
+        }
+
+        .warning {
+            background: #fff3cd;
+            color: #856404;
+            padding: 14px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .danger-warning {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .success {
+            background: #d4edda;
+            color: #155724;
+            padding: 14px;
+            border-radius: 10px;
+        }
+
+        a {
+            color: #1769aa;
+            word-break: break-all;
+        }
+
+        .back {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back button {
+            background: #555;
+        }
+
+        .history-note {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="top">
+
+        <div class="logo">
+            🛡️ QR Kavach
+        </div>
+
+        <p class="subtitle" id="pageSubtitle">
+            Scan and check any QR code safely
+        </p>
+
+    </div>
+
+
+    <!-- SCANNER CARD -->
+
+    <div class="card">
+
+        <h2 id="scannerTitle">
+            📷 QR Scanner
+        </h2>
+
+        <div id="reader"></div>
+
+        <div class="buttons">
+
+            <button
+                id="cameraButton"
+                onclick="startCamera()">
+
+                📷 Start Camera
+
+            </button>
+
+
+            <button
+                id="stopButton"
+                onclick="stopCamera()"
+                class="danger-button">
+
+                ⛔ Stop Camera
+
+            </button>
+
+
+            <button
+                id="galleryButton"
+                onclick="document.getElementById('qrImageInput').click()">
+
+                🖼️ Upload QR Image
+
+            </button>
+
+
+            <input
+                type="file"
+                id="qrImageInput"
+                accept="image/*">
+
+        </div>
+
+        <div class="history-note">
+            🔒 Scan history is stored only on this device.
+        </div>
+
+    </div>
+
+
+    <!-- RESULT -->
+
+    <div
+        class="card result"
+        id="resultCard">
+
+        <h2 id="resultTitle">
+            🔎 QR Result
+        </h2>
+
+
+        <!-- QR TYPE -->
+
+        <div class="type-box">
+
+            <h3 id="qrTypeTitle">
+                QR Type
+            </h3>
+
+            <div class="info-row">
+
+                <strong id="typeLabel">
+                    Type:
+                </strong>
+
+                <span id="qrType">
+                    Unknown
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- INSIDE QR -->
+
+        <div class="type-box">
+
+            <h3 id="insideTitle">
+                📦 What is inside this QR?
+            </h3>
+
+            <div id="details"></div>
+
+        </div>
+
+
+        <!-- QR CONTENT -->
+
+        <div class="type-box">
+
+            <h3 id="contentTitle">
+                QR Content
+            </h3>
+
+            <div id="qrContent"></div>
+
+        </div>
+
+
+        <!-- SECURITY -->
+
+        <div class="type-box">
+
+            <h3 id="securityTitle">
+                🛡️ Security Analysis
+            </h3>
+
+            <div
+                class="score"
+                id="score">
+
+                0%
+
+            </div>
+
+
+            <div id="securityStatus"></div>
+
+            <div id="reasons"></div>
+
+        </div>
+
+
+        <!-- BUTTONS -->
+
+        <div class="buttons">
+
+            <button
+                id="openButton"
+                style="display:none;"
+                onclick="openLink()">
+
+                🌐 Open Link
+
+            </button>
+
+
+            <button
+                onclick="copyContent()">
+
+                📋 Copy Content
+
+            </button>
+
+        </div>
+
+
+        <div id="warningBox"></div>
+
+    </div>
+
+
+    <!-- BACK -->
+
+    <div class="back">
+
+        <button onclick="goBack()">
+
+            ← Back to Dashboard
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   GLOBAL VARIABLES
+===================================================== */
+
+let video = null;
+let stream = null;
+let scanning = false;
+
+let currentContent = "";
+let currentLink = "";
+
+
+/* =====================================================
+   LANGUAGE
+===================================================== */
+
+const language =
+    localStorage.getItem("qrLanguage") || "en";
+
+
+const translations = {
+
+    en: {
+
+        subtitle:
+        "Scan and check any QR code safely",
+
+        scannerTitle:
+        "📷 QR Scanner",
+
+        startCamera:
+        "📷 Start Camera",
+
+        stopCamera:
+        "⛔ Stop Camera",
+
+        upload:
+        "🖼️ Upload QR Image",
+
+        resultTitle:
+        "🔎 QR Result",
+
+        qrTypeTitle:
+        "QR Type",
+
+        typeLabel:
+        "Type:",
+
+        insideTitle:
+        "📦 What is inside this QR?",
+
+        contentTitle:
+        "QR Content",
+
+        securityTitle:
+        "🛡️ Security Analysis",
+
+        open:
+        "🌐 Open Link",
+
+        copy:
+        "📋 Copy Content",
+
+        safe:
+        "SAFE",
+
+        suspicious:
+        "SUSPICIOUS",
+
+        dangerous:
+        "DANGEROUS",
+
+        cameraError:
+        "Camera could not be started.",
+
+        noQR:
+        "No QR code found in this image.",
+
+        copied:
+        "QR content copied!",
+
+        basicWarning:
+        "This is a basic rule-based security check. It is not a guarantee that a QR code is completely safe.",
+
+        historySaved:
+        "Scan saved to history."
+
+    },
+
+
+    mr: {
+
+        subtitle:
+        "कोणताही QR Code सुरक्षितपणे Scan आणि Check करा",
+
+        scannerTitle:
+        "📷 QR Scanner",
+
+        startCamera:
+        "📷 Camera सुरू करा",
+
+        stopCamera:
+        "⛔ Camera बंद करा",
+
+        upload:
+        "🖼️ QR Image Upload करा",
+
+        resultTitle:
+        "🔎 QR Result",
+
+        qrTypeTitle:
+        "QR प्रकार",
+
+        typeLabel:
+        "प्रकार:",
+
+        insideTitle:
+        "📦 या QR मध्ये काय आहे?",
+
+        contentTitle:
+        "QR Content",
+
+        securityTitle:
+        "🛡️ Security Analysis",
+
+        open:
+        "🌐 Link उघडा",
+
+        copy:
+        "📋 Content Copy करा",
+
+        safe:
+        "SAFE / सुरक्षित",
+
+        suspicious:
+        "SUSPICIOUS / संशयास्पद",
+
+        dangerous:
+        "DANGEROUS / धोकादायक",
+
+        cameraError:
+        "Camera सुरू करता आला नाही.",
+
+        noQR:
+        "या Image मध्ये QR Code सापडला नाही.",
+
+        copied:
+        "QR Content Copy झाला!",
+
+        basicWarning:
+        "ही basic rule-based security check आहे. QR Code पूर्णपणे सुरक्षित आहे याची हमी नाही.",
+
+        historySaved:
+        "Scan History मध्ये save झाला."
+
+    },
+
+
+    hi: {
+
+        subtitle:
+        "किसी भी QR Code को सुरक्षित रूप से Scan और Check करें",
+
+        scannerTitle:
+        "📷 QR Scanner",
+
+        startCamera:
+        "📷 Camera शुरू करें",
+
+        stopCamera:
+        "⛔ Camera बंद करें",
+
+        upload:
+        "🖼️ QR Image Upload करें",
+
+        resultTitle:
+        "🔎 QR Result",
+
+        qrTypeTitle:
+        "QR प्रकार",
+
+        typeLabel:
+        "प्रकार:",
+
+        insideTitle:
+        "📦 इस QR में क्या है?",
+
+        contentTitle:
+        "QR Content",
+
+        securityTitle:
+        "🛡️ Security Analysis",
+
+        open:
+        "🌐 Link खोलें",
+
+        copy:
+        "📋 Content Copy करें",
+
+        safe:
+        "SAFE / सुरक्षित",
+
+        suspicious:
+        "SUSPICIOUS / संदिग्ध",
+
+        dangerous:
+        "DANGEROUS / खतरनाक",
+
+        cameraError:
+        "Camera शुरू नहीं हो सका।",
+
+        noQR:
+        "इस Image में QR Code नहीं मिला।",
+
+        copied:
+        "QR Content Copy हो गया!",
+
+        basicWarning:
+        "यह basic rule-based security check है। QR Code पूरी तरह सुरक्षित है इसकी गारंटी नहीं है।",
+
+        historySaved:
+        "Scan History में save हो गया।"
+
+    }
+
+};
+
+
+const t =
+    translations[language] || translations.en;
+
+
+/* =====================================================
+   APPLY LANGUAGE
+===================================================== */
+
+document.getElementById("pageSubtitle")
+    .textContent = t.subtitle;
+
+document.getElementById("scannerTitle")
+    .textContent = t.scannerTitle;
+
+document.getElementById("cameraButton")
+    .textContent = t.startCamera;
+
+document.getElementById("stopButton")
+    .textContent = t.stopCamera;
+
+document.getElementById("galleryButton")
+    .textContent = t.upload;
+
+document.getElementById("resultTitle")
+    .textContent = t.resultTitle;
+
+document.getElementById("qrTypeTitle")
+    .textContent = t.qrTypeTitle;
+
+document.getElementById("typeLabel")
+    .textContent = t.typeLabel;
+
+document.getElementById("insideTitle")
+    .textContent = t.insideTitle;
+
+document.getElementById("contentTitle")
+    .textContent = t.contentTitle;
+
+document.getElementById("securityTitle")
+    .textContent = t.securityTitle;
+
+
+/* =====================================================
+   CAMERA
+===================================================== */
+
+async function startCamera() {
+
+    try {
+
+        if (scanning) {
+            return;
+        }
+
+
+        stream =
+            await navigator.mediaDevices.getUserMedia({
+
+                video: {
+                    facingMode: "environment"
+                },
+
+                audio: false
+
+            });
+
+
+        video =
+            document.createElement("video");
+
+
+        video.setAttribute(
+            "playsinline",
+            true
+        );
+
+
+        video.autoplay = true;
+
+
+        video.srcObject =
+            stream;
+
+
+        document.getElementById("reader")
+            .innerHTML = "";
+
+
+        document.getElementById("reader")
+            .appendChild(video);
+
+
+        await video.play();
+
+
+        scanning = true;
+
+
+        scanCamera();
+
+    }
+
+    catch(error) {
+
+        alert(t.cameraError);
+
+        console.log(error);
+
+    }
+
+}
+
+
+/* =====================================================
+   CAMERA SCAN
+===================================================== */
+
+function scanCamera() {
+
+    if (
+        !scanning ||
+        !video
+    ) {
+        return;
+    }
+
+
+    if (
+        video.readyState ===
+        video.HAVE_ENOUGH_DATA
+    ) {
+
+        const canvas =
+            document.createElement("canvas");
+
+
+        canvas.width =
+            video.videoWidth;
+
+        canvas.height =
+            video.videoHeight;
+
+
+        const ctx =
+            canvas.getContext("2d");
+
+
+        ctx.drawImage(
+            video,
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
+
+
+        const imageData =
+            ctx.getImageData(
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
+
+
+        const code =
+            jsQR(
+                imageData.data,
+                imageData.width,
+                imageData.height,
+                {
+                    inversionAttempts:
+                    "attemptBoth"
+                }
+            );
+
+
+        if (code) {
+
+            processQR(
+                code.data
+            );
+
+
+            stopCamera();
+
+
+            return;
+
+        }
+
+    }
+
+
+    requestAnimationFrame(
+        scanCamera
+    );
+
+}
+
+
+/* =====================================================
+   STOP CAMERA
+===================================================== */
+
+function stopCamera() {
+
+    scanning = false;
+
+
+    if (stream) {
+
+        stream
+            .getTracks()
+            .forEach(track => {
+
+                track.stop();
+
+            });
+
+
+        stream = null;
+
+    }
+
+
+    if (video) {
+
+        video.srcObject = null;
+
+        video.remove();
+
+        video = null;
+
+    }
+
+}
+
+
+/* =====================================================
+   GALLERY
+===================================================== */
+
+document.getElementById(
+    "qrImageInput"
+)
+.addEventListener(
+    "change",
+    function(event) {
+
+        const file =
+            event.target.files[0];
+
+
+        if (!file) {
+            return;
+        }
+
+
+        const img =
+            new Image();
+
+
+        img.onload =
+        function() {
+
+            const canvas =
+                document.createElement(
+                    "canvas"
+                );
+
+
+            canvas.width =
+                img.width;
+
+            canvas.height =
+                img.height;
+
+
+            const ctx =
+                canvas.getContext("2d");
+
+
+            ctx.drawImage(
+                img,
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
+
+
+            const imageData =
+                ctx.getImageData(
+                    0,
+                    0,
+                    canvas.width,
+                    canvas.height
+                );
+
+
+            const code =
+                jsQR(
+                    imageData.data,
+                    imageData.width,
+                    imageData.height,
+                    {
+                        inversionAttempts:
+                        "attemptBoth"
+                    }
+                );
+
+
+            if (code) {
+
+                processQR(
+                    code.data
+                );
+
+            }
+
+            else {
+
+                alert(t.noQR);
+
+            }
+
+        };
+
+
+        img.src =
+            URL.createObjectURL(file);
+
+    }
+);
+
+
+/* =====================================================
+   QR TYPE DETECTION
+===================================================== */
+
+function detectQRType(data) {
+
+    const lower =
+        data.toLowerCase();
+
+
+    if (
+        lower.startsWith("upi://pay")
+    ) {
+
+        return "💳 UPI Payment";
+
+    }
+
+
+    if (
+        lower.startsWith("wifi:")
+    ) {
+
+        return "📶 Wi-Fi";
+
+    }
+
+
+    if (
+        lower.includes("begin:vcard") ||
+        lower.includes("begin:vcalendar")
+    ) {
+
+        if (
+            lower.includes("vcard")
+        ) {
+
+            return "👤 Contact / vCard";
+
+        }
+
+        return "📅 Calendar / Event";
+
+    }
+
+
+    if (
+        lower.startsWith("mailto:") ||
+        lower.includes("mailto:")
+    ) {
+
+        return "📧 Email";
+
+    }
+
+
+    if (
+        lower.startsWith("tel:") ||
+        lower.match(
+            /^\+?[0-9]{8,15}$/
+        )
+    ) {
+
+        return "☎️ Phone Number";
+
+    }
+
+
+    if (
+        lower.startsWith("sms:") ||
+        lower.startsWith("smsto:")
+    ) {
+
+        return "💬 SMS";
+
+    }
+
+
+    if (
+        lower.startsWith("geo:") ||
+        lower.includes("maps.google.")
+    ) {
+
+        return "📍 Location / GPS";
+
+    }
+
+
+    if (
+        lower.includes("wa.me") ||
+        lower.includes("whatsapp.com")
+    ) {
+
+        return "💬 WhatsApp";
+
+    }
+
+
+    if (
+        lower.includes("t.me/") ||
+        lower.includes("telegram.me/")
+    ) {
+
+        return "✈️ Telegram";
+
+    }
+
+
+    if (
+        lower.includes("youtube.com") ||
+        lower.includes("youtu.be")
+    ) {
+
+        return "▶️ YouTube";
+
+    }
+
+
+    if (
+        lower.includes("instagram.com")
+    ) {
+
+        return "📸 Instagram";
+
+    }
+
+
+    if (
+        lower.includes("facebook.com") ||
+        lower.includes("fb.me")
+    ) {
+
+        return "📘 Facebook";
+
+    }
+
+
+    if (
+        lower.includes("play.google.com")
+    ) {
+
+        return "📲 Google Play Store";
+
+    }
+
+
+    if (
+        lower.includes("apps.apple.com")
+    ) {
+
+        return "🍎 Apple App Store";
+
+    }
+
+
+    if (
+        lower.startsWith("event:") ||
+        lower.includes("begin:vevent")
+    ) {
+
+        return "📅 Event / Calendar";
+
+    }
+
+
+    if (
+        lower.startsWith("http://") ||
+        lower.startsWith("https://")
+    ) {
+
+        return "🌐 Website / URL";
+
+    }
+
+
+    return "📝 Plain Text";
+
+}
+
+
+/* =====================================================
+   QR DETAILS
+===================================================== */
+
+function getQRDetails(
+    data,
+    type
+) {
+
+    let html = "";
+
+    const lower =
+        data.toLowerCase();
+
+
+    if (
+        type.includes("UPI")
+    ) {
+
+        const params =
+            new URLSearchParams(
+                data.split("?")[1] || ""
+            );
+
+
+        const upiId =
+            params.get("pa");
+
+
+        const name =
+            params.get("pn");
+
+
+        const amount =
+            params.get("am");
+
+
+        if (upiId) {
+
+            html += `
+                <div class="info-row">
+                    <strong>UPI ID:</strong>
+                    ${escapeHTML(upiId)}
+                </div>
+            `;
+
+        }
+
+
+        if (name) {
+
+            html += `
+                <div class="info-row">
+                    <strong>Payee Name:</strong>
+                    ${escapeHTML(name)}
+                </div>
+            `;
+
+        }
+
+
+        if (amount) {
+
+            html += `
+                <div class="info-row">
+                    <strong>Amount:</strong>
+                    ₹${escapeHTML(amount)}
+                </div>
+            `;
+
+        }
+
+
+        html += `
+            <div class="info-row">
+                Payment QR detected.
+                Check the receiver details
+                before paying.
+            </div>
+        `;
+
+
+        return html;
+
+    }
+
+
+    if (
+        type.includes("Wi-Fi")
+    ) {
+
+        const ssidMatch =
+            data.match(
+                /S:([^;]*)/i
+            );
+
+
+        const passwordMatch =
+            data.match(
+                /P:([^;]*)/i
+            );
+
+
+        const securityMatch =
+            data.match(
+                /T:([^;]*)/i
+            );
+
+
+        if (ssidMatch) {
+
+            html += `
+                <div class="info-row">
+                    <strong>Network:</strong>
+                    ${escapeHTML(
+                        ssidMatch[1]
+                    )}
+                </div>
+            `;
+
+        }
+
+
+        if (securityMatch) {
+
+            html += `
+                <div class="info-row">
+                    <strong>Security:</strong>
+                    ${escapeHTML(
+                        securityMatch[1]
+                    )}
+                </div>
+            `;
+
+        }
+
+
+        if (passwordMatch) {
+
+            html += `
+                <div class="info-row">
+                    <strong>Password:</strong>
+                    QR contains a Wi-Fi password.
+                </div>
+            `;
+
+        }
+
+
+        return html;
+
+    }
+
+
+    if (
+        type.includes("Contact")
+    ) {
+
+        const name =
+            data.match(
+                /FN:([^\n\r]*)/i
+            );
+
+
+        const phone =
+            data.match(
+                /TEL[^:]*:([^\n\r]*)/i
+            );
+
+
+        const email =
+            data.match(
+                /EMAIL[^:]*:([^\n\r]*)/i
+            );
+
+
+        if (name) {
+
+            html += `
+                <div class="info-row">
+                    <strong>Name:</strong>
+                    ${escapeHTML(name[1])}
+                </div>
+            `;
+
+        }
+
+
+        if (phone) {
+
+            html += `
+                <div class="info-row">
+                    <strong>Phone:</strong>
+                    ${escapeHTML(phone[1])}
+                </div>
+            `;
+
+        }
+
+
+        if (email) {
+
+            html += `
+                <div class="info-row">
+                    <strong>Email:</strong>
+                    ${escapeHTML(email[1])}
+                </div>
+            `;
+
+        }
+
+
+        return html;
+
+    }
+
+
+    if (
+        type.includes("Email")
+    ) {
+
+        return `
+            <div class="info-row">
+                <strong>
+                    Email information detected.
+                </strong>
+            </div>
+        `;
+
+    }
+
+
+    if (
+        type.includes("Phone")
+    ) {
+
+        return `
+            <div class="info-row">
+                <strong>
+                    Phone number detected.
+                </strong>
+            </div>
+        `;
+
+    }
+
+
+    if (
+        type.includes("SMS")
+    ) {
+
+        return `
+            <div class="info-row">
+                <strong>
+                    SMS message information detected.
+                </strong>
+            </div>
+        `;
+
+    }
+
+
+    if (
+        type.includes("Location")
+    ) {
+
+        return `
+            <div class="info-row">
+                <strong>
+                    Location / GPS information detected.
+                </strong>
+            </div>
+        `;
+
+    }
+
+
+    if (
+        type.includes("WhatsApp") ||
+        type.includes("Telegram") ||
+        type.includes("YouTube") ||
+        type.includes("Instagram") ||
+        type.includes("Facebook")
+    ) {
+
+        return `
+            <div class="info-row">
+                <strong>
+                    Social / communication link detected.
+                </strong>
+            </div>
+        `;
+
+    }
+
+
+    if (
+        type.includes("Website")
+    ) {
+
+        let domain = "";
+
+
+        try {
+
+            domain =
+                new URL(data).hostname;
+
+        }
+
+        catch(e) {
+
+            domain =
+                "Unknown";
+
+        }
+
+
+        return `
+            <div class="info-row">
+                <strong>
+                    Website Domain:
+                </strong>
+
+                ${escapeHTML(domain)}
+
+            </div>
+        `;
+
+    }
+
+
+    return `
+        <div class="info-row">
+            Plain text information detected.
+        </div>
+    `;
+
+}
+
+
+/* =====================================================
+   SECURITY ANALYSIS
+===================================================== */
+
+function analyseSecurity(
+    data,
+    type
+) {
+
+    let score = 95;
+
+    let reasons = [];
+
+
+    const lower =
+        data.toLowerCase();
+
+
+    if (
+        lower.startsWith("https://")
+    ) {
+
+        reasons.push(
+            "HTTPS connection detected."
+        );
+
+    }
+
+
+    if (
+        lower.startsWith("http://")
+    ) {
+
+        score -= 20;
+
+
+        reasons.push(
+            "HTTP connection is not encrypted."
+        );
+
+    }
+
+
+    if (
+        /https?:\/\/\d{1,3}(\.\d{1,3}){3}/
+        .test(data)
+    ) {
+
+        score -= 20;
+
+
+        reasons.push(
+            "URL uses a direct IP address."
+        );
+
+    }
+
+
+    if (
+        lower.includes("@") &&
+        (
+            lower.startsWith("http://") ||
+            lower.startsWith("https://")
+        )
+    ) {
+
+        score -= 20;
+
+
+        reasons.push(
+            "URL contains @ symbol."
+        );
+
+    }
+
+
+    const suspiciousWords = [
+
+        "login",
+        "verify",
+        "urgent",
+        "winner",
+        "prize",
+        "free",
+        "claim",
+        "password",
+        "account",
+        "gift",
+        "reward",
+        "kyc"
+
+    ];
+
+
+    let foundWord = false;
+
+
+    suspiciousWords.forEach(
+        word => {
+
+            if (
+                lower.includes(word) &&
+                !foundWord
+            ) {
+
+                score -= 8;
+
+
+                reasons.push(
+                    "Suspicious keyword detected: " +
+                    word
+                );
+
+
+                foundWord = true;
+
+            }
+
+        }
+    );
+
+
+    if (
+        data.length > 180
+    ) {
+
+        score -= 10;
+
+
+        reasons.push(
+            "QR content is unusually long."
+        );
+
+    }
+
+
+    if (
+        type.includes("UPI")
+    ) {
+
+        reasons.push(
+            "UPI payment QR detected. Verify receiver details before payment."
+        );
+
+    }
+
+
+    if (
+        type.includes("Wi-Fi")
+    ) {
+
+        reasons.push(
+            "Wi-Fi credentials are present in this QR."
+        );
+
+    }
+
+
+    if (
+        type.includes("WhatsApp")
+    ) {
+
+        reasons.push(
+            "WhatsApp link detected. Check the invite/link before opening."
+        );
+
+    }
+
+
+    score =
+        Math.max(
+            0,
+            Math.min(
+                100,
+                score
+            )
+        );
+
+
+    return {
+
+        score: score,
+
+        reasons: reasons
+
+    };
+
+}
+
+
+/* =====================================================
+   PROCESS QR
+===================================================== */
+
+function processQR(data) {
+
+    currentContent = data;
+
+
+    const type =
+        detectQRType(data);
+
+
+    const details =
+        getQRDetails(
+            data,
+            type
+        );
+
+
+    const analysis =
+        analyseSecurity(
+            data,
+            type
+        );
+
+
+    document.getElementById(
+        "resultCard"
+    ).style.display = "block";
+
+
+    document.getElementById(
+        "qrType"
+    ).textContent = type;
+
+
+    document.getElementById(
+        "details"
+    ).innerHTML = details;
+
+
+    document.getElementById(
+        "qrContent"
+    ).innerHTML =
+        "<div class='info-row'>" +
+        escapeHTML(data) +
+        "</div>";
+
+
+    document.getElementById(
+        "score"
+    ).textContent =
+        analysis.score + "%";
+
+
+    let statusHTML = "";
+
+    let statusClass = "";
+
+
+    if (
+        analysis.score >= 75
+    ) {
+
+        statusHTML =
+            "🟢 <strong>" +
+            t.safe +
+            "</strong>";
+
+
+        statusClass =
+            "safe";
+
+    }
+
+
+    else if (
+        analysis.score >= 45
+    ) {
+
+        statusHTML =
+            "🟠 <strong>" +
+            t.suspicious +
+            "</strong>";
+
+
+        statusClass =
+            "suspicious";
+
+    }
+
+
+    else {
+
+        statusHTML =
+            "🔴 <strong>" +
+            t.dangerous +
+            "</strong>";
+
+
+        statusClass =
+            "dangerous";
+
+    }
+
+
+    document.getElementById(
+        "securityStatus"
+    ).className =
+        statusClass;
+
+
+    document.getElementById(
+        "securityStatus"
+    ).innerHTML =
+        statusHTML;
+
+
+    let reasonHTML = "";
+
+
+    analysis.reasons.forEach(
+        reason => {
+
+            reasonHTML += `
+                <div class="info-row">
+                    • ${escapeHTML(reason)}
+                </div>
+            `;
+
+        }
+    );
+
+
+    if (
+        analysis.reasons.length === 0
+    ) {
+
+        reasonHTML = `
+            <div class="success">
+                No obvious suspicious pattern
+                was detected.
+            </div>
+        `;
+
+    }
+
+
+    document.getElementById(
+        "reasons"
+    ).innerHTML =
+        reasonHTML;
+
+
+    const openButton =
+        document.getElementById(
+            "openButton"
+        );
+
+
+    currentLink = "";
+
+
+    if (
+        lowerURL(data)
+    ) {
+
+        currentLink =
+            data;
+
+
+        openButton.style.display =
+            "inline-block";
+
+
+        openButton.textContent =
+            t.open;
+
+    }
+
+
+    else {
+
+        openButton.style.display =
+            "none";
+
+    }
+
+
+    const warningBox =
+        document.getElementById(
+            "warningBox"
+        );
+
+
+    if (
+        analysis.score < 45
+    ) {
+
+        warningBox.innerHTML = `
+
+            <div class="warning danger-warning">
+
+                ⚠️
+                <strong>
+                    ${t.dangerous}
+                </strong>
+
+                <br>
+
+                Do not open or enter
+                personal information until
+                you verify this QR.
+
+            </div>
+
+        `;
+
+    }
+
+
+    else {
+
+        warningBox.innerHTML = `
+
+            <div class="warning">
+
+                ℹ️
+                ${t.basicWarning}
+
+            </div>
+
+        `;
+
+    }
+
+
+    saveScanHistory(
+        data,
+        type,
+        analysis.score
+    );
+
+
+    window.scrollTo({
+
+        top:
+            document.getElementById(
+                "resultCard"
+            ).offsetTop,
+
+        behavior:
+            "smooth"
+
+    });
+
+}
+
+
+/* =====================================================
+   SAVE SCAN HISTORY
+===================================================== */
+
+function saveScanHistory(
+    data,
+    type,
+    score
+) {
+
+    let history =
+        JSON.parse(
+            localStorage.getItem(
+                "qrScanHistory"
+            )
+        ) || [];
+
+
+    let status;
+
+
+    if (
+        score >= 75
+    ) {
+
+        status =
+            "SAFE";
+
+    }
+
+    else if (
+        score >= 45
+    ) {
+
+        status =
+            "SUSPICIOUS";
+
+    }
+
+    else {
+
+        status =
+            "DANGEROUS";
+
+    }
+
+
+    const scan = {
+
+        content: data,
+
+        type: type,
+
+        score: score,
+
+        status: status,
+
+        date:
+            new Date()
+            .toLocaleString()
+
+    };
+
+
+    history.unshift(
+        scan
+    );
+
+
+    history =
+        history.slice(
+            0,
+            20
+        );
+
+
+    localStorage.setItem(
+
+        "qrScanHistory",
+
+        JSON.stringify(
+            history
+        )
+
+    );
+
+
+    console.log(
+        t.historySaved
+    );
+
+}
+
+
+/* =====================================================
+   URL CHECK
+===================================================== */
+
+function lowerURL(data) {
+
+    return (
+
+        data.startsWith(
+            "http://"
+        ) ||
+
+        data.startsWith(
+            "https://"
+        )
+
+    );
+
+}
+
+
+/* =====================================================
+   COPY CONTENT
+===================================================== */
+
+function copyContent() {
+
+    if (
+        !currentContent
+    ) {
+
+        return;
+
+    }
+
+
+    navigator.clipboard
+        .writeText(
+            currentContent
+        )
+        .then(() => {
+
+            alert(
+                t.copied
+            );
+
+        });
+
+}
+
+
+/* =====================================================
+   OPEN LINK
+===================================================== */
+
+function openLink() {
+
+    if (
+        !currentLink
+    ) {
+
+        return;
+
+    }
+
+
+    window.open(
+
+        currentLink,
+
+        "_blank",
+
+        "noopener,noreferrer"
+
+    );
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(text) {
+
+    return String(text)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =====================================================
+   BACK TO DASHBOARD
+===================================================== */
+
+function goBack() {
+
+    window.location.href =
+        "dashboard.html";
+
+}
+
+</script>
+
+</body>
+</html>

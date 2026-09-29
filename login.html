@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>QR Kavach | Login</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: #f5f8fc;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #172b4d;
+        }
+
+        .login-page {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        /* LEFT SIDE */
+
+        .login-left {
+            background: #123c69;
+            color: white;
+            padding: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-left-content {
+            max-width: 470px;
+        }
+
+        .login-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 55px;
+        }
+
+        .login-brand-icon {
+            width: 48px;
+            height: 48px;
+            background: white;
+            color: #123c69;
+            border-radius: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 27px;
+        }
+
+        .login-brand-name {
+            font-size: 25px;
+            font-weight: 800;
+        }
+
+        .login-brand-tagline {
+            color: #8de0d0;
+            font-size: 11px;
+            margin-top: 2px;
+        }
+
+        .login-left h1 {
+            font-size: 45px;
+            line-height: 1.15;
+            margin: 0 0 20px;
+        }
+
+        .login-left h1 span {
+            color: #65d6c2;
+        }
+
+        .login-left-description {
+            color: #d8e5f1;
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 35px;
+        }
+
+        .login-benefits {
+            display: grid;
+            gap: 14px;
+        }
+
+        .login-benefit {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #e7f0f7;
+            font-size: 14px;
+        }
+
+        .benefit-icon {
+            width: 34px;
+            height: 34px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* RIGHT SIDE */
+
+        .login-right {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 430px;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 38px;
+            box-sizing: border-box;
+            box-shadow: 0 15px 45px rgba(18, 60, 105, 0.09);
+        }
+
+        .mobile-brand {
+            display: none;
+        }
+
+        .login-card-header {
+            margin-bottom: 28px;
+        }
+
+        .login-card-header h2 {
+            margin: 0 0 8px;
+            color: #123c69;
+            font-size: 29px;
+        }
+
+        .login-card-header p {
+            margin: 0;
+            color: #718096;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 19px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            color: #27364a;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .form-group input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 13px 14px;
+            border: 1px solid #d3dce8;
+            border-radius: 10px;
+            outline: none;
+            font-size: 15px;
+            color: #172b4d;
+            background: #fff;
+        }
+
+        .form-group input:focus {
+            border-color: #16a085;
+            box-shadow: 0 0 0 3px rgba(22, 160, 133, 0.12);
+        }
+
+        .login-submit {
+            width: 100%;
+            border: none;
+            padding: 14px;
+            border-radius: 10px;
+            background: #123c69;
+            color: white;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 5px;
+            transition: 0.2s;
+        }
+
+        .login-submit:hover {
+            background: #0d2f52;
+            transform: translateY(-1px);
+        }
+
+        .error-message {
+            display: none;
+            margin-top: 15px;
+            padding: 11px 13px;
+            border-radius: 9px;
+            background: #fff1f1;
+            border: 1px solid #ffd5d5;
+            color: #c0392b;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .signup-area {
+            text-align: center;
+            margin-top: 23px;
+            padding-top: 20px;
+            border-top: 1px solid #edf1f5;
+            color: #718096;
+            font-size: 14px;
+        }
+
+        .signup-area a {
+            color: #123c69;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .signup-area a:hover {
+            color: #16a085;
+        }
+
+        .back-home {
+            display: block;
+            text-align: center;
+            margin-top: 18px;
+            color: #718096;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .back-home:hover {
+            color: #123c69;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 800px) {
+
+            .login-page {
+                grid-template-columns: 1fr;
+            }
+
+            .login-left {
+                display: none;
+            }
+
+            .mobile-brand {
+                display: block;
+                text-align: center;
+                margin-bottom: 25px;
+            }
+
+            .mobile-brand-icon {
+                width: 55px;
+                height: 55px;
+                margin: auto;
+                background: #123c69;
+                color: white;
+                border-radius: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 30px;
+            }
+
+            .mobile-brand-name {
+                color: #123c69;
+                font-size: 25px;
+                font-weight: 800;
+                margin-top: 10px;
+            }
+
+            .mobile-brand-tagline {
+                color: #16a085;
+                font-size: 12px;
+                font-weight: 600;
+            }
+
+            .login-right {
+                min-height: 100vh;
+                padding: 25px 18px;
+                box-sizing: border-box;
+            }
+
+            .login-card {
+                padding: 28px 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-page">
+
+        <!-- LEFT -->
+
+        <section class="login-left">
+
+            <div class="login-left-content">
+
+                <div class="login-brand">
+
+                    <div class="login-brand-icon">
+                        🛡️
+                    </div>
+
+                    <div>
+                        <div class="login-brand-name">
+                            QR Kavach
+                        </div>
+
+                        <div class="login-brand-tagline">
+                            Think Before You Scan
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <h1 id="leftTitle">
+                    Your first step towards
+                    <span>safer QR scanning.</span>
+                </h1>
+
+
+                <p
+                    class="login-left-description"
+                    id="leftDescription">
+
+                    Login to access QR scanning,
+                    safety analysis, scan history and
+                    cyber awareness tools.
+
+                </p>
+
+
+                <div class="login-benefits">
+
+                    <div class="login-benefit">
+
+                        <div class="benefit-icon">
+                            📷
+                        </div>
+
+                        <span id="benefit1">
+                            Scan QR codes using your camera
+                        </span>
+
+                    </div>
+
+
+                    <div class="login-benefit">
+
+                        <div class="benefit-icon">
+                            🛡️
+                        </div>
+
+                        <span id="benefit2">
+                            Understand QR safety information
+                        </span>
+
+                    </div>
+
+
+                    <div class="login-benefit">
+
+                        <div class="benefit-icon">
+                            📋
+                        </div>
+
+                        <span id="benefit3">
+                            Keep track of your scan history
+                        </span>
+
+                    </div>
+
+
+                    <div class="login-benefit">
+
+                        <div class="benefit-icon">
+                            📚
+                        </div>
+
+                        <span id="benefit4">
+                            Learn important cyber safety tips
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- RIGHT -->
+
+        <section class="login-right">
+
+            <div class="login-card">
+
+
+                <!-- MOBILE BRAND -->
+
+                <div class="mobile-brand">
+
+                    <div class="mobile-brand-icon">
+                        🛡️
+                    </div>
+
+                    <div class="mobile-brand-name">
+                        QR Kavach
+                    </div>
+
+                    <div class="mobile-brand-tagline">
+                        Think Before You Scan
+                    </div>
+
+                </div>
+
+
+                <!-- LOGIN HEADER -->
+
+                <div class="login-card-header">
+
+                    <h2 id="loginTitle">
+                        Welcome Back
+                    </h2>
+
+                    <p id="loginSubtitle">
+                        Login to continue to your QR Kavach account.
+                    </p>
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label
+                        for="email"
+                        id="emailLabel">
+
+                        Email Address
+
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        autocomplete="email">
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label
+                        for="password"
+                        id="passwordLabel">
+
+                        Password
+
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        autocomplete="current-password">
+
+                </div>
+
+
+                <!-- LOGIN -->
+
+                <button
+                    type="button"
+                    class="login-submit"
+                    id="loginButton">
+
+                    Login →
+
+                </button>
+
+
+                <!-- ERROR -->
+
+                <div
+                    class="error-message"
+                    id="errorMessage">
+                </div>
+
+
+                <!-- SIGNUP -->
+
+                <div class="signup-area">
+
+                    <span id="signupBefore">
+                        Don't have an account?
+                    </span>
+
+                    <a
+                        href="signup.html"
+                        id="signupLink">
+
+                        Create Account
+
+                    </a>
+
+                </div>
+
+
+                <!-- BACK -->
+
+                <a
+                    href="index.html"
+                    class="back-home"
+                    id="backHome">
+
+                    ← Back to Home
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <script>
+
+        /* ================================
+           LANGUAGE
+        ================================= */
+
+        let language =
+            localStorage.getItem("qrLanguage") || "en";
+
+
+        const translations = {
+
+            en: {
+
+                leftTitle:
+                    "Your first step towards safer QR scanning.",
+
+                leftDescription:
+                    "Login to access QR scanning, safety analysis, scan history and cyber awareness tools.",
+
+                benefit1:
+                    "Scan QR codes using your camera",
+
+                benefit2:
+                    "Understand QR safety information",
+
+                benefit3:
+                    "Keep track of your scan history",
+
+                benefit4:
+                    "Learn important cyber safety tips",
+
+                title:
+                    "Welcome Back",
+
+                subtitle:
+                    "Login to continue to your QR Kavach account.",
+
+                email:
+                    "Email Address",
+
+                emailPlaceholder:
+                    "Enter your email",
+
+                password:
+                    "Password",
+
+                passwordPlaceholder:
+                    "Enter your password",
+
+                login:
+                    "Login →",
+
+                error:
+                    "Invalid email or password.",
+
+                signupBefore:
+                    "Don't have an account? ",
+
+                signup:
+                    "Create Account",
+
+                back:
+                    "← Back to Home"
+
+            },
+
+
+            mr: {
+
+                leftTitle:
+                    "अधिक सुरक्षित QR स्कॅनिंगकडे तुमचे पहिले पाऊल.",
+
+                leftDescription:
+                    "QR स्कॅनिंग, सुरक्षा विश्लेषण, स्कॅन हिस्ट्री आणि सायबर जागरूकता साधनांचा वापर करण्यासाठी लॉगिन करा.",
+
+                benefit1:
+                    "कॅमेऱ्याचा वापर करून QR स्कॅन करा",
+
+                benefit2:
+                    "QR सुरक्षा माहिती समजून घ्या",
+
+                benefit3:
+                    "तुमची स्कॅन हिस्ट्री जतन करा",
+
+                benefit4:
+                    "महत्त्वाच्या सायबर सुरक्षा टिप्स शिका",
+
+                title:
+                    "पुन्हा स्वागत आहे",
+
+                subtitle:
+                    "तुमच्या QR Kavach अकाउंटमध्ये पुढे जाण्यासाठी लॉगिन करा.",
+
+                email:
+                    "ईमेल पत्ता",
+
+                emailPlaceholder:
+                    "तुमचा ईमेल टाका",
+
+                password:
+                    "पासवर्ड",
+
+                passwordPlaceholder:
+                    "तुमचा पासवर्ड टाका",
+
+                login:
+                    "लॉगिन →",
+
+                error:
+                    "ईमेल किंवा पासवर्ड चुकीचा आहे.",
+
+                signupBefore:
+                    "अकाउंट नाही? ",
+
+                signup:
+                    "अकाउंट तयार करा",
+
+                back:
+                    "← होमवर परत जा"
+
+            },
+
+
+            hi: {
+
+                leftTitle:
+                    "सुरक्षित QR स्कैनिंग की ओर आपका पहला कदम।",
+
+                leftDescription:
+                    "QR स्कैनिंग, सुरक्षा विश्लेषण, स्कैन हिस्ट्री और साइबर जागरूकता सुविधाओं का उपयोग करने के लिए लॉगिन करें।",
+
+                benefit1:
+                    "कैमरे का उपयोग करके QR स्कैन करें",
+
+                benefit2:
+                    "QR सुरक्षा जानकारी समझें",
+
+                benefit3:
+                    "अपनी स्कैन हिस्ट्री देखें",
+
+                benefit4:
+                    "महत्वपूर्ण साइबर सुरक्षा टिप्स सीखें",
+
+                title:
+                    "वापसी पर स्वागत है",
+
+                subtitle:
+                    "अपने QR Kavach अकाउंट में आगे बढ़ने के लिए लॉगिन करें।",
+
+                email:
+                    "ईमेल पता",
+
+                emailPlaceholder:
+                    "अपना ईमेल दर्ज करें",
+
+                password:
+                    "पासवर्ड",
+
+                passwordPlaceholder:
+                    "अपना पासवर्ड दर्ज करें",
+
+                login:
+                    "लॉगिन →",
+
+                error:
+                    "ईमेल या पासवर्ड गलत है।",
+
+                signupBefore:
+                    "अकाउंट नहीं है? ",
+
+                signup:
+                    "अकाउंट बनाएँ",
+
+                back:
+                    "← होम पर वापस जाएँ"
+
+            }
+
+        };
+
+
+        /* ================================
+           APPLY LANGUAGE
+        ================================= */
+
+        function applyLanguage() {
+
+            const t =
+                translations[language];
+
+
+            document.getElementById(
+                "leftTitle"
+            ).innerText = t.leftTitle;
+
+
+            document.getElementById(
+                "leftDescription"
+            ).innerText = t.leftDescription;
+
+
+            document.getElementById(
+                "benefit1"
+            ).innerText = t.benefit1;
+
+
+            document.getElementById(
+                "benefit2"
+            ).innerText = t.benefit2;
+
+
+            document.getElementById(
+                "benefit3"
+            ).innerText = t.benefit3;
+
+
+            document.getElementById(
+                "benefit4"
+            ).innerText = t.benefit4;
+
+
+            document.getElementById(
+                "loginTitle"
+            ).innerText = t.title;
+
+
+            document.getElementById(
+                "loginSubtitle"
+            ).innerText = t.subtitle;
+
+
+            document.getElementById(
+                "emailLabel"
+            ).innerText = t.email;
+
+
+            document.getElementById(
+                "email"
+            ).placeholder =
+                t.emailPlaceholder;
+
+
+            document.getElementById(
+                "passwordLabel"
+            ).innerText = t.password;
+
+
+            document.getElementById(
+                "password"
+            ).placeholder =
+                t.passwordPlaceholder;
+
+
+            document.getElementById(
+                "loginButton"
+            ).innerText = t.login;
+
+
+            document.getElementById(
+                "signupBefore"
+            ).innerText = t.signupBefore;
+
+
+            document.getElementById(
+                "signupLink"
+            ).innerText = t.signup;
+
+
+            document.getElementById(
+                "backHome"
+            ).innerText = t.back;
+
+        }
+
+
+        /* ================================
+           LOGIN FUNCTION
+        ================================= */
+
+        document.getElementById(
+            "loginButton"
+        ).addEventListener(
+            "click",
+            function () {
+
+                const email =
+                    document.getElementById(
+                        "email"
+                    ).value.trim();
+
+
+                const password =
+                    document.getElementById(
+                        "password"
+                    ).value;
+
+
+                const savedEmail =
+                    localStorage.getItem(
+                        "qrEmail"
+                    );
+
+
+                const savedPassword =
+                    localStorage.getItem(
+                        "qrPassword"
+                    );
+
+
+                const error =
+                    document.getElementById(
+                        "errorMessage"
+                    );
+
+
+                if (
+                    email !== "" &&
+                    password !== "" &&
+                    email === savedEmail &&
+                    password === savedPassword
+                ) {
+
+                    localStorage.setItem(
+                        "qrLoggedIn",
+                        "true"
+                    );
+
+
+                    window.location.href =
+                        "dashboard.html";
+
+                } else {
+
+                    error.innerText =
+                        translations[language].error;
+
+                    error.style.display =
+                        "block";
+
+                }
+
+            }
+        );
+
+
+        /* ================================
+           ENTER KEY LOGIN
+        ================================= */
+
+        document.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    event.key === "Enter"
+                ) {
+
+                    document.getElementById(
+                        "loginButton"
+                    ).click();
+
+                }
+
+            }
+        );
+
+
+        /* ================================
+           START
+        ================================= */
+
+        applyLanguage();
+
+    </script>
+
+</body>
+
+</html>

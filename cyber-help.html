@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cyber Crime Help - QR Shield</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #eef2ff, #f8fafc);
+            color: #222;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1e3a8a;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 22px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            color: #1e3a8a;
+        }
+
+        .danger {
+            border-left: 6px solid #dc2626;
+        }
+
+        .danger h2 {
+            color: #dc2626;
+        }
+
+        .emergency {
+            border-left: 6px solid #f59e0b;
+        }
+
+        .emergency h2 {
+            color: #d97706;
+        }
+
+        .official {
+            border-left: 6px solid #16a34a;
+        }
+
+        .official h2 {
+            color: #15803d;
+        }
+
+        .steps {
+            padding-left: 20px;
+            line-height: 1.8;
+        }
+
+        .helpline-number {
+            font-size: 28px;
+            font-weight: bold;
+            color: #dc2626;
+        }
+
+        .link-button {
+            display: inline-block;
+            padding: 12px 20px;
+            background: #1e3a8a;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .link-button:hover {
+            opacity: 0.9;
+        }
+
+        .back-button {
+            display: block;
+            width: fit-content;
+            margin: 25px auto 10px;
+            padding: 12px 25px;
+            background: #111827;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .back-button:hover {
+            opacity: 0.9;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 12px;
+            }
+
+            .card {
+                padding: 18px;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+
+            .helpline-number {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1 id="title">🚨 Cyber Crime Help</h1>
+
+    <p class="subtitle" id="subtitle">
+        Take quick action if you face an online scam or cyber crime.
+    </p>
+
+
+    <!-- IF SCAMMED -->
+
+    <div class="card danger">
+
+        <h2 id="firstTitle">⚠️ If You Are Scammed</h2>
+
+        <ol class="steps">
+
+            <li id="step1">
+                Stay calm and do not send more money.
+            </li>
+
+            <li id="step2">
+                Take screenshots of messages, QR codes, links and transactions.
+            </li>
+
+            <li id="step3">
+                Contact your bank or payment app immediately if money was transferred.
+            </li>
+
+            <li id="step4">
+                Change your passwords if your account details were shared.
+            </li>
+
+            <li id="step5">
+                Report the incident to the official cyber crime portal.
+            </li>
+
+        </ol>
+
+    </div>
+
+
+    <!-- MONEY LOST -->
+
+    <div class="card emergency">
+
+        <h2 id="moneyTitle">💰 If Money Was Lost</h2>
+
+        <p id="moneyText">
+            If money has been transferred because of a cyber fraud, report it as quickly as possible.
+        </p>
+
+    </div>
+
+
+    <!-- HELPLINE -->
+
+    <div class="card emergency">
+
+        <h2 id="helplineTitle">📞 Cyber Crime Helpline</h2>
+
+        <p>
+            <strong class="helpline-number">1930</strong>
+            <br>
+            <span id="cyberHelplineText">
+                National Cyber Crime Helpline
+            </span>
+        </p>
+
+        <p>
+            <strong class="helpline-number">112</strong>
+            <br>
+            <span id="policeHelplineText">
+                Emergency Police Helpline
+            </span>
+        </p>
+
+    </div>
+
+
+    <!-- OFFICIAL REPORT -->
+
+    <div class="card official">
+
+        <h2 id="reportTitle">🌐 Report Cyber Crime</h2>
+
+        <p id="reportText">
+            Use the official Government of India cyber crime reporting portal to report online financial fraud and other cyber crimes.
+        </p>
+
+        <a
+            href="https://cybercrime.gov.in/"
+            target="_blank"
+            class="link-button"
+            id="reportButton"
+        >
+            Report Cyber Crime
+        </a>
+
+    </div>
+
+
+    <!-- PROTECT YOURSELF -->
+
+    <div class="card">
+
+        <h2 id="protectTitle">🛡️ Protect Yourself</h2>
+
+        <ul class="steps">
+
+            <li id="protect1">
+                Never share your OTP with anyone.
+            </li>
+
+            <li id="protect2">
+                Never share your ATM PIN or password.
+            </li>
+
+            <li id="protect3">
+                Check links carefully before opening them.
+            </li>
+
+            <li id="protect4">
+                Do not scan unknown QR codes.
+            </li>
+
+            <li id="protect5">
+                Use strong and unique passwords.
+            </li>
+
+            <li id="protect6">
+                Enable two-factor authentication whenever possible.
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <a href="dashboard.html" class="back-button" id="backButton">
+        ← Back to Dashboard
+    </a>
+
+</div>
+
+
+<script>
+
+    /* GET SELECTED LANGUAGE */
+
+    const language = localStorage.getItem("qrLanguage") || "en";
+
+
+    /* TRANSLATIONS */
+
+    const translations = {
+
+        en: {
+
+            title: "🚨 Cyber Crime Help",
+
+            subtitle:
+                "Take quick action if you face an online scam or cyber crime.",
+
+            firstTitle:
+                "⚠️ If You Are Scammed",
+
+            step1:
+                "Stay calm and do not send more money.",
+
+            step2:
+                "Take screenshots of messages, QR codes, links and transactions.",
+
+            step3:
+                "Contact your bank or payment app immediately if money was transferred.",
+
+            step4:
+                "Change your passwords if your account details were shared.",
+
+            step5:
+                "Report the incident to the official cyber crime portal.",
+
+            moneyTitle:
+                "💰 If Money Was Lost",
+
+            moneyText:
+                "If money has been transferred because of a cyber fraud, report it as quickly as possible.",
+
+            helplineTitle:
+                "📞 Cyber Crime Helpline",
+
+            cyberHelplineText:
+                "National Cyber Crime Helpline",
+
+            policeHelplineText:
+                "Emergency Police Helpline",
+
+            reportTitle:
+                "🌐 Report Cyber Crime",
+
+            reportText:
+                "Use the official Government of India cyber crime reporting portal to report online financial fraud and other cyber crimes.",
+
+            reportButton:
+                "Report Cyber Crime",
+
+            protectTitle:
+                "🛡️ Protect Yourself",
+
+            protect1:
+                "Never share your OTP with anyone.",
+
+            protect2:
+                "Never share your ATM PIN or password.",
+
+            protect3:
+                "Check links carefully before opening them.",
+
+            protect4:
+                "Do not scan unknown QR codes.",
+
+            protect5:
+                "Use strong and unique passwords.",
+
+            protect6:
+                "Enable two-factor authentication whenever possible.",
+
+            backButton:
+                "← Back to Dashboard"
+        },
+
+
+        mr: {
+
+            title:
+                "🚨 सायबर क्राईम मदत",
+
+            subtitle:
+                "ऑनलाइन फसवणूक किंवा सायबर क्राईम झाल्यास त्वरित योग्य पाऊल उचला.",
+
+            firstTitle:
+                "⚠️ तुमची फसवणूक झाल्यास",
+
+            step1:
+                "शांत रहा आणि आणखी पैसे पाठवू नका.",
+
+            step2:
+                "मेसेज, QR कोड, लिंक आणि व्यवहारांचे स्क्रीनशॉट घ्या.",
+
+            step3:
+                "पैसे ट्रान्सफर झाले असल्यास त्वरित बँक किंवा पेमेंट अॅपशी संपर्क करा.",
+
+            step4:
+                "तुमची अकाउंट माहिती शेअर झाली असल्यास पासवर्ड बदला.",
+
+            step5:
+                "घटनेची अधिकृत सायबर क्राईम पोर्टलवर तक्रार करा.",
+
+            moneyTitle:
+                "💰 पैसे गमावल्यास",
+
+            moneyText:
+                "सायबर फसवणुकीमुळे पैसे ट्रान्सफर झाले असल्यास शक्य तितक्या लवकर तक्रार करा.",
+
+            helplineTitle:
+                "📞 सायबर क्राईम हेल्पलाइन",
+
+            cyberHelplineText:
+                "राष्ट्रीय सायबर क्राईम हेल्पलाइन",
+
+            policeHelplineText:
+                "आपत्कालीन पोलीस हेल्पलाइन",
+
+            reportTitle:
+                "🌐 सायबर क्राईमची तक्रार करा",
+
+            reportText:
+                "ऑनलाइन आर्थिक फसवणूक आणि इतर सायबर क्राईमची तक्रार करण्यासाठी भारत सरकारच्या अधिकृत पोर्टलचा वापर करा.",
+
+            reportButton:
+                "सायबर क्राईम रिपोर्ट करा",
+
+            protectTitle:
+                "🛡️ स्वतःचे संरक्षण करा",
+
+            protect1:
+                "तुमचा OTP कोणालाही सांगू नका.",
+
+            protect2:
+                "तुमचा ATM PIN किंवा पासवर्ड कोणालाही सांगू नका.",
+
+            protect3:
+                "कोणतीही लिंक उघडण्यापूर्वी ती काळजीपूर्वक तपासा.",
+
+            protect4:
+                "अनोळखी QR कोड स्कॅन करू नका.",
+
+            protect5:
+                "मजबूत आणि वेगळे पासवर्ड वापरा.",
+
+            protect6:
+                "शक्य असल्यास Two-Factor Authentication सुरू ठेवा.",
+
+            backButton:
+                "← Dashboard वर जा"
+        },
+
+
+        hi: {
+
+            title:
+                "🚨 साइबर क्राइम सहायता",
+
+            subtitle:
+                "ऑनलाइन धोखाधड़ी या साइबर क्राइम होने पर तुरंत सही कदम उठाएं।",
+
+            firstTitle:
+                "⚠️ अगर आपके साथ धोखाधड़ी हुई है",
+
+            step1:
+                "शांत रहें और अधिक पैसे न भेजें।",
+
+            step2:
+                "मैसेज, QR कोड, लिंक और लेन-देन के स्क्रीनशॉट लें।",
+
+            step3:
+                "अगर पैसे ट्रांसफर हुए हैं तो तुरंत बैंक या पेमेंट ऐप से संपर्क करें।",
+
+            step4:
+                "अगर आपकी अकाउंट जानकारी शेयर हुई है तो पासवर्ड बदलें।",
+
+            step5:
+                "घटना की रिपोर्ट आधिकारिक साइबर क्राइम पोर्टल पर करें।",
+
+            moneyTitle:
+                "💰 अगर पैसे खो गए हैं",
+
+            moneyText:
+                "अगर साइबर धोखाधड़ी के कारण पैसे ट्रांसफर हुए हैं, तो जितनी जल्दी हो सके रिपोर्ट करें।",
+
+            helplineTitle:
+                "📞 साइबर क्राइम हेल्पलाइन",
+
+            cyberHelplineText:
+                "राष्ट्रीय साइबर क्राइम हेल्पलाइन",
+
+            policeHelplineText:
+                "आपातकालीन पुलिस हेल्पलाइन",
+
+            reportTitle:
+                "🌐 साइबर क्राइम की रिपोर्ट करें",
+
+            reportText:
+                "ऑनलाइन वित्तीय धोखाधड़ी और अन्य साइबर क्राइम की रिपोर्ट करने के लिए भारत सरकार के आधिकारिक पोर्टल का उपयोग करें।",
+
+            reportButton:
+                "साइबर क्राइम रिपोर्ट करें",
+
+            protectTitle:
+                "🛡️ खुद को सुरक्षित रखें",
+
+            protect1:
+                "अपना OTP किसी के साथ शेयर न करें।",
+
+            protect2:
+                "अपना ATM PIN या पासवर्ड किसी के साथ शेयर न करें।",
+
+            protect3:
+                "कोई भी लिंक खोलने से पहले उसे ध्यान से जांचें।",
+
+            protect4:
+                "अज्ञात QR कोड स्कैन न करें।",
+
+            protect5:
+                "मजबूत और अलग-अलग पासवर्ड का उपयोग करें।",
+
+            protect6:
+                "जब संभव हो Two-Factor Authentication चालू रखें।",
+
+            backButton:
+                "← Dashboard पर जाएं"
+        }
+
+    };
+
+
+    /* SELECT TRANSLATION */
+
+    const t = translations[language] || translations.en;
+
+
+    /* APPLY TRANSLATIONS */
+
+    document.getElementById("title").textContent = t.title;
+
+    document.getElementById("subtitle").textContent = t.subtitle;
+
+    document.getElementById("firstTitle").textContent = t.firstTitle;
+
+    document.getElementById("step1").textContent = t.step1;
+
+    document.getElementById("step2").textContent = t.step2;
+
+    document.getElementById("step3").textContent = t.step3;
+
+    document.getElementById("step4").textContent = t.step4;
+
+    document.getElementById("step5").textContent = t.step5;
+
+    document.getElementById("moneyTitle").textContent = t.moneyTitle;
+
+    document.getElementById("moneyText").textContent = t.moneyText;
+
+    document.getElementById("helplineTitle").textContent =
+        t.helplineTitle;
+
+    document.getElementById("cyberHelplineText").textContent =
+        t.cyberHelplineText;
+
+    document.getElementById("policeHelplineText").textContent =
+        t.policeHelplineText;
+
+    document.getElementById("reportTitle").textContent =
+        t.reportTitle;
+
+    document.getElementById("reportText").textContent =
+        t.reportText;
+
+    document.getElementById("reportButton").textContent =
+        t.reportButton;
+
+    document.getElementById("protectTitle").textContent =
+        t.protectTitle;
+
+    document.getElementById("protect1").textContent =
+        t.protect1;
+
+    document.getElementById("protect2").textContent =
+        t.protect2;
+
+    document.getElementById("protect3").textContent =
+        t.protect3;
+
+    document.getElementById("protect4").textContent =
+        t.protect4;
+
+    document.getElementById("protect5").textContent =
+        t.protect5;
+
+    document.getElementById("protect6").textContent =
+        t.protect6;
+
+    document.getElementById("backButton").textContent =
+        t.backButton;
+
+</script>
+
+</body>
+</html>

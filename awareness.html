@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Awareness - QR Shield</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #222;
+        }
+
+        .header {
+            background: #123c69;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 25px auto;
+        }
+
+        .section {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            color: #123c69;
+        }
+
+        li {
+            margin: 10px 0;
+            line-height: 1.5;
+        }
+
+        .video {
+            margin-top: 15px;
+        }
+
+        .video a {
+            display: inline-block;
+            background: #e53935;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-top: 8px;
+        }
+
+        .video a:hover {
+            opacity: 0.85;
+        }
+
+        .back-button {
+            display: block;
+            width: fit-content;
+            margin: 25px auto;
+            background: #123c69;
+            color: white;
+            padding: 12px 22px;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .note {
+            font-size: 14px;
+            color: #666;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1 id="pageTitle">🛡️ Cyber Awareness</h1>
+    <p id="pageSubtitle">Learn how to stay safe online</p>
+</div>
+
+<div class="container">
+
+    <div class="section">
+        <h2 id="qrTitle">📱 QR Code Safety</h2>
+        <ul id="qrList">
+            <li>Do not scan QR codes from unknown sources.</li>
+            <li>Always check the website address before opening it.</li>
+            <li>Never enter OTP, PIN or password on an unknown website.</li>
+            <li>Be careful with QR codes asking for urgent payments.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2 id="scamTitle">⚠️ Common Online Scams</h2>
+        <ul id="scamList">
+            <li>Fake shopping websites</li>
+            <li>Phishing links and messages</li>
+            <li>Fake prize or lottery messages</li>
+            <li>Fake job offers</li>
+            <li>Fake banking or KYC messages</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2 id="passwordTitle">🔐 Strong Password</h2>
+        <ul id="passwordList">
+            <li>Use a strong and unique password.</li>
+            <li>Do not share your password with anyone.</li>
+            <li>Avoid using your name or birthday as a password.</li>
+            <li>Use two-factor authentication whenever possible.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2 id="otpTitle">🔑 OTP Safety</h2>
+        <ul id="otpList">
+            <li>Never share your OTP with anyone.</li>
+            <li>Bank employees will not ask for your OTP.</li>
+            <li>Do not enter OTP on suspicious websites.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2 id="videoTitle">🎥 Cyber Safety Help Videos</h2>
+
+        <div class="video">
+            <h3 id="video1Title">How to Stay Safe Online</h3>
+            <a href="https://www.youtube.com/results?search_query=cyber+safety+awareness+India"
+               target="_blank">
+                ▶ Watch on YouTube
+            </a>
+        </div>
+
+        <div class="video">
+            <h3 id="video2Title">Phishing and Online Scam Awareness</h3>
+            <a href="https://www.youtube.com/results?search_query=phishing+online+scam+awareness"
+               target="_blank">
+                ▶ Watch on YouTube
+            </a>
+        </div>
+
+        <div class="video">
+            <h3 id="video3Title">OTP and Digital Payment Safety</h3>
+            <a href="https://www.youtube.com/results?search_query=OTP+digital+payment+cyber+safety+India"
+               target="_blank">
+                ▶ Watch on YouTube
+            </a>
+        </div>
+
+        <p class="note" id="videoNote">
+            These links open YouTube search results so you can choose an appropriate educational video.
+        </p>
+    </div>
+
+    <div class="section">
+        <h2 id="tipsTitle">✅ Safety Tips</h2>
+        <ul id="tipsList">
+            <li>Keep your phone and apps updated.</li>
+            <li>Use screen lock on your device.</li>
+            <li>Do not click unknown links.</li>
+            <li>Check website addresses carefully.</li>
+            <li>Report suspicious activity instead of ignoring it.</li>
+        </ul>
+    </div>
+
+    <a href="dashboard.html" class="back-button" id="backButton">
+        ← Back to Dashboard
+    </a>
+
+</div>
+
+<script>
+
+const language = localStorage.getItem("qrLanguage") || "en";
+
+const translations = {
+
+    en: {
+        pageTitle: "🛡️ Cyber Awareness",
+        pageSubtitle: "Learn how to stay safe online",
+
+        qrTitle: "📱 QR Code Safety",
+        qrList: [
+            "Do not scan QR codes from unknown sources.",
+            "Always check the website address before opening it.",
+            "Never enter OTP, PIN or password on an unknown website.",
+            "Be careful with QR codes asking for urgent payments."
+        ],
+
+        scamTitle: "⚠️ Common Online Scams",
+        scamList: [
+            "Fake shopping websites",
+            "Phishing links and messages",
+            "Fake prize or lottery messages",
+            "Fake job offers",
+            "Fake banking or KYC messages"
+        ],
+
+        passwordTitle: "🔐 Strong Password",
+        passwordList: [
+            "Use a strong and unique password.",
+            "Do not share your password with anyone.",
+            "Avoid using your name or birthday as a password.",
+            "Use two-factor authentication whenever possible."
+        ],
+
+        otpTitle: "🔑 OTP Safety",
+        otpList: [
+            "Never share your OTP with anyone.",
+            "Bank employees will not ask for your OTP.",
+            "Do not enter OTP on suspicious websites."
+        ],
+
+        videoTitle: "🎥 Cyber Safety Help Videos",
+        video1Title: "How to Stay Safe Online",
+        video2Title: "Phishing and Online Scam Awareness",
+        video3Title: "OTP and Digital Payment Safety",
+        videoNote: "These links open YouTube search results so you can choose an appropriate educational video.",
+
+        tipsTitle: "✅ Safety Tips",
+        tipsList: [
+            "Keep your phone and apps updated.",
+            "Use screen lock on your device.",
+            "Do not click unknown links.",
+            "Check website addresses carefully.",
+            "Report suspicious activity instead of ignoring it."
+        ],
+
+        backButton: "← Back to Dashboard"
+    },
+
+    mr: {
+        pageTitle: "🛡️ सायबर जागरूकता",
+        pageSubtitle: "ऑनलाइन सुरक्षित कसे राहावे ते शिका",
+
+        qrTitle: "📱 QR कोड सुरक्षा",
+        qrList: [
+            "अनोळखी ठिकाणांवरील QR कोड स्कॅन करू नका.",
+            "लिंक उघडण्यापूर्वी वेबसाइटचा पत्ता तपासा.",
+            "अनोळखी वेबसाइटवर OTP, PIN किंवा पासवर्ड टाकू नका.",
+            "तातडीने पैसे भरण्यास सांगणाऱ्या QR कोडपासून सावध रहा."
+        ],
+
+        scamTitle: "⚠️ सामान्य ऑनलाइन फसवणूक",
+        scamList: [
+            "बनावट ऑनलाइन शॉपिंग वेबसाइट",
+            "फिशिंग लिंक आणि मेसेज",
+            "बनावट बक्षीस किंवा लॉटरी मेसेज",
+            "बनावट नोकरीच्या ऑफर्स",
+            "बनावट बँकिंग किंवा KYC मेसेज"
+        ],
+
+        passwordTitle: "🔐 मजबूत पासवर्ड",
+        passwordList: [
+            "मजबूत आणि वेगळा पासवर्ड वापरा.",
+            "तुमचा पासवर्ड कोणाशीही शेअर करू नका.",
+            "नाव किंवा जन्मतारीख पासवर्ड म्हणून वापरू नका.",
+            "शक्य असल्यास Two-Factor Authentication वापरा."
+        ],
+
+        otpTitle: "🔑 OTP सुरक्षा",
+        otpList: [
+            "तुमचा OTP कोणालाही सांगू नका.",
+            "बँकेचे कर्मचारी OTP मागणार नाहीत.",
+            "संशयास्पद वेबसाइटवर OTP टाकू नका."
+        ],
+
+        videoTitle: "🎥 सायबर सुरक्षा मदत व्हिडिओ",
+        video1Title: "ऑनलाइन सुरक्षित कसे राहावे",
+        video2Title: "फिशिंग आणि ऑनलाइन फसवणूक",
+        video3Title: "OTP आणि डिजिटल पेमेंट सुरक्षा",
+        videoNote: "हे YouTube search results उघडतात. त्यामधून योग्य शैक्षणिक व्हिडिओ निवडू शकता.",
+
+        tipsTitle: "✅ सुरक्षा टिप्स",
+        tipsList: [
+            "फोन आणि apps नेहमी अपडेट ठेवा.",
+            "फोनला screen lock ठेवा.",
+            "अनोळखी links वर क्लिक करू नका.",
+            "वेबसाइटचा पत्ता काळजीपूर्वक तपासा.",
+            "संशयास्पद activity असल्यास report करा."
+        ],
+
+        backButton: "← Dashboard वर जा"
+    },
+
+    hi: {
+        pageTitle: "🛡️ साइबर जागरूकता",
+        pageSubtitle: "ऑनलाइन सुरक्षित रहना सीखें",
+
+        qrTitle: "📱 QR कोड सुरक्षा",
+        qrList: [
+            "अनजान स्रोतों से QR कोड स्कैन न करें।",
+            "लिंक खोलने से पहले वेबसाइट का पता जांचें।",
+            "अनजान वेबसाइट पर OTP, PIN या पासवर्ड न डालें।",
+            "तुरंत पैसे भेजने के लिए कहने वाले QR कोड से सावधान रहें।"
+        ],
+
+        scamTitle: "⚠️ सामान्य ऑनलाइन धोखाधड़ी",
+        scamList: [
+            "फर्जी ऑनलाइन शॉपिंग वेबसाइट",
+            "फिशिंग लिंक और मैसेज",
+            "फर्जी इनाम या लॉटरी मैसेज",
+            "फर्जी नौकरी के ऑफर",
+            "फर्जी बैंकिंग या KYC मैसेज"
+        ],
+
+        passwordTitle: "🔐 मजबूत पासवर्ड",
+        passwordList: [
+            "मजबूत और अलग पासवर्ड का उपयोग करें।",
+            "अपना पासवर्ड किसी के साथ शेयर न करें।",
+            "नाम या जन्मतिथि को पासवर्ड न बनाएं।",
+            "जहां संभव हो Two-Factor Authentication का उपयोग करें।"
+        ],
+
+        otpTitle: "🔑 OTP सुरक्षा",
+        otpList: [
+            "अपना OTP किसी को न बताएं।",
+            "बैंक कर्मचारी OTP नहीं मांगेंगे।",
+            "संदिग्ध वेबसाइट पर OTP न डालें।"
+        ],
+
+        videoTitle: "🎥 साइबर सुरक्षा सहायता वीडियो",
+        video1Title: "ऑनलाइन सुरक्षित कैसे रहें",
+        video2Title: "फिशिंग और ऑनलाइन धोखाधड़ी",
+        video3Title: "OTP और डिजिटल पेमेंट सुरक्षा",
+        videoNote: "ये YouTube search results खोलते हैं। आप इनमें से उचित educational video चुन सकते हैं।",
+
+        tipsTitle: "✅ सुरक्षा टिप्स",
+        tipsList: [
+            "फोन और apps को अपडेट रखें।",
+            "फोन में screen lock रखें।",
+            "अनजान links पर क्लिक न करें।",
+            "वेबसाइट का पता ध्यान से जांचें।",
+            "संदिग्ध activity को report करें।"
+        ],
+
+        backButton: "← Dashboard पर जाएं"
+    }
+};
+
+const t = translations[language] || translations.en;
+
+document.getElementById("pageTitle").textContent = t.pageTitle;
+document.getElementById("pageSubtitle").textContent = t.pageSubtitle;
+
+document.getElementById("qrTitle").textContent = t.qrTitle;
+document.getElementById("scamTitle").textContent = t.scamTitle;
+document.getElementById("passwordTitle").textContent = t.passwordTitle;
+document.getElementById("otpTitle").textContent = t.otpTitle;
+
+document.getElementById("videoTitle").textContent = t.videoTitle;
+document.getElementById("video1Title").textContent = t.video1Title;
+document.getElementById("video2Title").textContent = t.video2Title;
+document.getElementById("video3Title").textContent = t.video3Title;
+document.getElementById("videoNote").textContent = t.videoNote;
+
+document.getElementById("tipsTitle").textContent = t.tipsTitle;
+document.getElementById("backButton").textContent = t.backButton;
+
+function fillList(id, items) {
+    const list = document.getElementById(id);
+    list.innerHTML = "";
+
+    items.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        list.appendChild(li);
+    });
+}
+
+fillList("qrList", t.qrList);
+fillList("scamList", t.scamList);
+fillList("passwordList", t.passwordList);
+fillList("otpList", t.otpList);
+fillList("tipsList", t.tipsList);
+
+</script>
+
+</body>
+</html>
